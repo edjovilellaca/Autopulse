@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autopulse</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="divAgregar">
+        <label for="file" class="file-style">
+            <img id="previewImage" src="./images/upload.png">
+            <div id="mensaje"><p>Elegir Imagen</p></div>
+            <input style="display: none;" type="file" id="file" name="fileImg" accept="image/*" onchange="previewFile()">
+        </label>
+
+        <div class="info" id="marca">
+            <input type="text" class="input"required autocomplete="off">
+            <label class="label">Marca</label>
+        </div>
+
+        <div class="info" id="modelo">
+            <input type="text" class="input"required autocomplete="off">
+            <label class="label">Modelo</label>
+        </div>
+
+        <div class="info" id="year">
+            <input type="text" class="input"required autocomplete="off">
+            <label class="label">Año</label>
+        </div>
+
+        <div class="info" id="color">
+            <input type="text" class="input"required autocomplete="off">
+            <label class="label">Color</label>
+        </div>
+
+        <button class="btn">Guardar</button>
+        
+    </div>
+
+    <script>
+        async function previewFile() {
+            var preview = document.getElementById('previewImage');
+            var file = document.getElementById('file').files[0];
+            var mensajeDiv = document.getElementById('mensaje');
+            const maxSize = 1.5e+6; 
+
+            if (!file) {
+
+                mensajeDiv.innerHTML = "<p>Elegir Imagen</p>";
+                preview.src = "./images/upload.png";
+                return;
+
+            }
+
+            if (file.size > maxSize) {
+
+                const tamanioEnMb = maxSize / 1000000;
+                mensajeDiv.innerHTML = `<p>Error: El tamaño máximo es ${tamanioEnMb} MB</p>`;
+                preview.src = "./images/reintentar.png";
+                return;
+
+            } else {
+                
+                mensajeDiv.remove();
+                preview.style.width = "90%";
+                preview.src = URL.createObjectURL(file);
+                preview.onload = function() {
+                    URL.revokeObjectURL(preview.src); 
+                };
+
+            }
+        }
+    </script>
+</body>
+</html>

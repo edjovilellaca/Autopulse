@@ -52,9 +52,9 @@ h1{
 .infoCarro {
     text-align: left;
     padding: 0 20px;
-    overflow: hidden; /* Evita que el contenido desborde */
-    max-height: 0; /* Comienza con altura 0 */
-    transition: max-height 0.5s ease; /* Transición suave para la altura */
+    overflow: hidden; 
+    max-height: 0; 
+    transition: max-height 0.5s ease; 
 }
 
 .infoCarro.show {
