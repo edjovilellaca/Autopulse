@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Righteous&family=Russo+One&display=swap');
+nav{
+    display: flex;
+    align-items: center;
+    background: white;
+    justify-content: space-around;
+    width: 100%;
+    text-align: center;
+    font-family: "Righteous", sans-serif;
+    font-weight: 500;
+    position: fixed;
+    bottom: 0px;
+    height: 9%;
+}
+
+.nombre{
+    background: linear-gradient(90deg, rgba(63,68,88,1) 0%, rgba(177,22,35,1) 35%, rgba(176,158,158,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.casita{
+    font-size: 1.5rem;
+}
+
+.config{
+    font-size: 2rem;
+    transform: scaleX(-1);
+}

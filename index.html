@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autopulse</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 <body>
     <div class="container">
@@ -47,12 +48,38 @@
             </div>
         </div>
 
+        <div class="tarjetaCarro" onclick="redirigir()">
+            <div class="fotoCarro">
+                <h2>Toyota</h2>
+                <img src="images/sedan.png" alt="Vehículo">
+            </div>
+            <div class="infoCarro">
+                <p><strong>Modelo:</strong> Matrix XRS</p>
+                <p><strong>Año:</strong> 2005</p>
+                <p><strong>Condición:</strong> <span class="statusMala">Mala</span></p>
+                <p><strong>Kilometraje:</strong> 246,466</p>
+            </div>
+        </div>
+
+        <div class="tarjetaCarro" onclick="redirigir()">
+            <div class="fotoCarro">
+                <h2>Toyota</h2>
+                <img src="images/sedan.png" alt="Vehículo">
+            </div>
+            <div class="infoCarro">
+                <p><strong>Modelo:</strong> Matrix XRS</p>
+                <p><strong>Año:</strong> 2005</p>
+                <p><strong>Condición:</strong> <span class="statusMala">Mala</span></p>
+                <p><strong>Kilometraje:</strong> 246,466</p>
+            </div>
+        </div>
     </div>
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+    </nav>
 </body>
 </html>
-
-<script>
-    function redirigir() {
-        window.location.href = `info.html`;
-    }
-</script>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

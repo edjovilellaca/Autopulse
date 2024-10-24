@@ -56,19 +56,18 @@ body {
 
 input{
     display: flex;
-    border-top: 0px;
+    border-top: none;
     border-right: 0px;
-    border-bottom: 20%;
     border-left: 0px;
     border-color: #9F111B;
 	background: transparent;
 	outline:none;
 	height: 70%;
 	color: #0c0c0c;
-	font-size: 16px;
+	font-size: 1.3rem;
 	width: 70%;
 	margin-bottom: 20px;
-	padding: 15px;
+	padding: 5% 0 2% 2%;
     position: relative;
 }
 
@@ -94,14 +93,17 @@ input:valid ~ .label {
 }
 
 .btn{
+    display: flex;
+    justify-content: center;
     border-radius: 24px;
     background-color: #9F111B;
     color: #cccccc;
     font-size: 1.5rem;
-    width: 30%;
+    width: 45%;
     height: 15%;
     align-self: center;
     border: none;
     outline: none;
     padding: 10px 0;
+    text-align: center;
 }
