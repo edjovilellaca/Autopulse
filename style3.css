@@ -103,4 +103,5 @@ input:valid ~ .label {
     align-self: center;
     border: none;
     outline: none;
+    padding: 10px 0;
 }
