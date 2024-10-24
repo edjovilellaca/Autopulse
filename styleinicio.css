@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+.Contenedor {
+    position: relative;
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+    margin: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.inicio {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    z-index: 1;
+    box-sizing: border-box;
+    overflow: auto; /* Agregado para hacer scroll si el contenido es mayor */
+}
+
+form {
+    width: 100%;
+}
+
+.Contenedor h1 {
+    font-size: 36px;
+    margin: -10px 0;
+}
+
+.caja1 {
+    position: relative;
+    margin: 30px 0;
+}
+
+.caja1 input {
+    width: 100%;
+    padding: 13px 50px 13px 20px;
+    background: #eee;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.caja1 input::placeholder {
+    color: #888;
+    font-weight: 400;
+}
+
+.caja1 i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
+
+.olvidar {
+    margin: -15px 0 15px;
+}
+
+.olvidar a {
+    font-size: 14.5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn {
+    width: 100%;
+    height: 48px;
+    background: #9F111B;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.izquierda {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.izquierda::before {
+    content: '';
+    position: absolute;
+    left: -250%;
+    width: 300%;
+    height: 100%;
+    background: #9F111B;
+    border-radius: 150px;
+    z-index: 2;
+}
+
+.izquierda2 {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: #9F111B;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.izquierda2 p {
+    margin-bottom: 20px;
+}
+
+.izquierda2 .btn {
+    width: 160px;
+    height: 46px;
+    background: transparent;
+    border: 2px solid #fff;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 650px) {
+    .Contenedor {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 0; /* Eliminamos márgenes adicionales en pantallas pequeñas */
+        box-shadow: none;
+    }
+
+    .inicio {
+        position: relative;
+        width: 100%;
+        height: auto; /* Ajustamos para permitir la altura basada en el contenido */
+        padding-top: 180px;
+        overflow: visible; /* Evitamos que se corte el contenido */
+    }
+
+    .izquierda2 {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .izquierda::before {
+        display: none;
+    }
+
+    .izquierda2 {
+        width: 100%;
+        height: auto;
+        top: 0;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    .btn {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .caja1 input {
+        font-size: 14px;
+    }
+
+    .Contenedor {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .inicio {
+        height: auto;
+        padding-bottom: 30px; /* Añadimos espacio adicional al fondo para asegurar que todo el contenido sea visible */
+    }
+}
