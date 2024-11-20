@@ -3,12 +3,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Russo One", sans-serif;
+    background: #9F111B;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: #9F111B;
-    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .faq-container {
@@ -17,8 +17,8 @@ body {
     gap: 20px;
     align-items: center;
     width: 80%;
-    padding-top: 20%;
-    padding-bottom: 4%;
+    padding-bottom: 25%;
+    padding-top: 10%;
 }
 
 .faq-container h2 {
