@@ -1,0 +1,127 @@
+/* General */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+.Contenedor {
+    position: relative;
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+    display: flex;
+    overflow: hidden;
+}
+
+/* Sección izquierda */
+.izquierda {
+    position: relative;
+    width: 50%;
+    background: #9F111B;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.izquierda2 {
+    text-align: center;
+}
+
+.izquierda2 h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.izquierda2 p {
+    margin-bottom: 20px;
+}
+
+.izquierda2 .btn {
+    width: 160px;
+    height: 46px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.izquierda2 .btn:hover {
+    background: #fff;
+    color: #9F111B;
+}
+
+/* Sección derecha */
+.inicio {
+    width: 50%;
+    background: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicio h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
+.caja1 {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.caja1 input {
+    width: 100%; 
+    padding: 12px 20px; /* Reduce el padding para equilibrar el espacio */
+    margin: 0; 
+    background: #eee;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box; 
+}
+
+.caja1 i {
+    position: absolute;
+    top: 50%;
+    right: 15px; 
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
+
+.btn {
+    width: 100%;
+    max-width: 400px; 
+    height: 48px;
+    background: #9F111B;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: 10px; 
+}
+
+.btn:hover {
+    background: #740d15;
+}
