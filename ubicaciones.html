@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicaciones</title>
+    <link rel="stylesheet" href="css/styleU.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header>
+        <div class="nav-buttons">
+            <span>Inicio</span>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    <h1>Encuentra talleres por la zona.</h1>
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d23087.898505514648!2d-104.87648329456533!3d21.477086284206536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1staller%20mecanico!5e0!3m2!1ses!2smx!4v1732062576194!5m2!1ses!2smx" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+    </nav>
+</body>
+</html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
