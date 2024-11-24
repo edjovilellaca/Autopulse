@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Registro</title>
+    <link rel="stylesheet" href="/css/styleRegistro.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="Contenedor">
+        <!-- Sección izquierda -->
+        <div class="izquierda">
+            <div class="izquierda2">
+                <h1>Hola, ¡Bienvenido!</h1>
+                <br>
+                <p>¿Ya tienes una cuenta?</p>
+                <button class="btn registro" id="loginButton">Inicio sesión</button>
+            </div>
+        </div>
+
+        <!-- Sección derecha -->
+        <div class="inicio">
+            <h2>Registro</h2>
+            <form id="form-registro">
+                <div class="caja1">
+                    <input type="text" id="name" placeholder="Nombre Completo" required>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="caja1">
+                    <input type="email" id="email" placeholder="Correo Electrónico" required>
+                    <i class="bx bxs-envelope"></i>
+                </div>
+                <div class="caja1">
+                    <input type="text" id="phoneNumber" placeholder="Número de Teléfono" required>
+                    <i class="bx bxs-phone"></i>
+                </div>
+                <div class="caja1">
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="caja1">
+                    <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" required>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <script>
+        // Lógica para el formulario de registro
+        document.getElementById("form-registro").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+
+
+        // Validación básica
+        if (!name || !email || !phoneNumber || !password || !confirmPassword) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+
+            if (password !== confirmPassword) {
+                alert("Las contraseñas no coinciden.");
+                return;
+            }
+
+            const phoneRegex = /^[0-9]{10}$/;
+                if (!phoneRegex.test(phoneNumber)) {
+                    alert("El número de teléfono debe contener 10 dígitos.");
+                    return;
+                }
+
+
+            try {
+                const response = await fetch("https://backend-autoplus.onrender.com/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, password, phoneNumber })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert("Registro exitoso: " + data.message);
+                    window.location.href = "inicio.html";
+                } else {
+                    const errorData = await response.json();
+                    alert("Error: " + errorData.message);
+                }
+            } catch (error) {
+                alert("Hubo un problema con la conexión al servidor.");
+            }
+        });
+
+        // Redirige al usuario a la página de inicio al hacer clic en el botón "Inicio sesión"
+        document.getElementById("loginButton").addEventListener("click", function() {
+            window.location.href = "inicio.html";
+        });
+    </script>
+</body>
+</html>
