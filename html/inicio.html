@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styleinicio.css">
+</head>
+<body>
+    <div class="Contenedor">
+        <div class="inicio">
+            <form id="loginForm">
+                <h1>Login</h1>
+                <div class="caja1">
+                    <input type="text" id="email" placeholder="Usuario" required>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="caja1">
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <div class="olvidar">
+                    <a href="#">¿Olvidaste tu Contraseña?</a>
+                </div>
+                <button type="submit" class="btn">Ingresar</button>
+            </form>
+        </div>
+
+        <div class="izquierda">
+            <div class="izquierda2">
+                <h1>Hola, ¡Bienvenido!</h1>
+                <br>
+                <p>¿No tienes una cuenta?</p>
+                <button class="btn registro" id="registerButton">Registrarse</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("https://backend-autoplus.onrender.com/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Guarda el UID en localStorage
+                    localStorage.setItem("userid", data.uid);
+
+                    alert("Inicio de sesión exitoso: " + data.message);
+                    window.location.href = "index.html"; // Redirige a la página principal
+                } else {
+                    const errorData = await response.json();
+                    alert("Error: " + errorData.message);
+                }
+            } catch (error) {
+                alert("Hubo un problema con la conexión al servidor.");
+            }
+        });
+
+        // Redirige al usuario a la página de registro al hacer clic en el botón "Registrarse"
+        document.getElementById("registerButton").addEventListener("click", function() {
+            window.location.href = "registrarse.html";
+        });
+
+        // Si el usuario ya está autenticado, redirigirlo automáticamente al inicio
+        document.addEventListener("DOMContentLoaded", () => {
+            const uid = localStorage.getItem("userid");
+            if (uid) {
+                alert("Ya estás autenticado. Redirigiendo al inicio...");
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+</body>
+</html>
