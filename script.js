@@ -50,8 +50,20 @@ function princi() {
     window.location.href = `index.html`;
 }
 
+function verNotificaciones() {
+    window.location.href = `notificaciones.html`;
+}
+
+function preguntar() {
+    window.location.href = `preguntasF.html`;
+}
+
 function redirigir() {
     window.location.href = `info.html`;
+}
+
+function ubicar() {
+    window.location.href = `ubicaciones.html`;
 }
 
 function registrar() {

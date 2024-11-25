@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes</title>
+    <link href="https://kit.fontawesome.com/dad89e78ab.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/stylePF.css">
+</head>
+<body>
+    <header>
+        <div class="nav-buttons">
+            <span>Inicio</span>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    <div class="faq-container">
+        <h2>Preguntas Frecuentes</h2>
+        <!-- Pregunta 1 -->
+        <div class="faq">
+            <label for="faq1">
+                ¿Cómo puedo registrar mi vehículo en la aplicación?
+            </label>
+            <input type="checkbox" id="faq1">
+            <div class="answer">
+                <p>Puedes registrar tu vehículo en la sección "Agregar Vehículo". Solo necesitarás algunos datos básicos como la marca, año y color.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="faq">
+            <label for="faq2">
+                ¿Cómo recibo las recomendaciones de mantenimiento?
+            </label>
+            <input type="checkbox" id="faq2">
+            <div class="answer">
+                <p>La aplicación genera recomendaciones de mantenimiento basadas en la información del vehículo. Estas recomendaciones se envían de manera periódica a través de notificaciones.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="faq">
+            <label for="faq3">
+                ¿Puedo ver el historial de mantenimiento de mi vehículo?
+            </label>
+            <input type="checkbox" id="faq3">
+            <div class="answer">
+                <p>Sí, puedes consultar el historial completo de los mantenimientos realizados a tu vehículo al presionar cada vehiculo registrado dentro de la aplicación.</p>
+            </div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="faq">
+            <label for="faq4">
+                ¿La aplicación ofrece recordatorios para el cambio de aceite?
+            </label>
+            <input type="checkbox" id="faq4">
+            <div class="answer">
+                <p>La aplicación envía recordatorios automáticos para el cambio de aceite y otros servicios preventivos basados en el kilometraje de tu vehículo y las recomendaciones del fabricante.</p>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+    </nav>
+</body>
+</html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

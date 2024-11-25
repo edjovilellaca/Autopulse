@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones</title>
+    <link rel="stylesheet" href="css/styleNt.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header>
+        <div class="nav-buttons">
+            <span>Inicio</span>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    <div class="notifications-container">
+        <!-- Notificación de éxito -->
+        <div class="notification success">
+            <i class="fa-solid fa-check-circle"></i>
+            <p>Su carro Toyota 2013 se encuentra con el mantenimiento correcto.</p>
+            <span class="close-btn">×</span>
+        </div>
+
+        <!-- Notificación de error -->
+        <div class="notification error">
+            <i class="fa-solid fa-exclamation-circle"></i>
+            <p>El carro Nissan 2003 necesita un cambio de aceite URGENTE.</p>
+            <span class="close-btn">×</span>
+        </div>
+
+        <!-- Notificación informativa -->
+        <div class="notification info">
+            <i class="fa-solid fa-info-circle"></i>
+            <p>No se ha registrado ninguna actualizacion de vehiculo recientemente.</p>
+            <span class="close-btn">×</span>
+        </div>
+    </div>
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+    </nav>
+</body>
+</html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
