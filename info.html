@@ -7,90 +7,126 @@
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/header.css">
+    <style>
+        #vehicleDetails {
+            display: flex;
+            flex-direction: column; /* Cambiado a columna para apilar elementos */
+            align-items: flex-start;
+            margin: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Espacio entre la imagen y la información */
+            width: 100%; /* Asegura que la tarjeta ocupe el ancho completo */
+        }
+
+        #imagen-vehiculo {
+            max-width: 300px;
+            margin-bottom: 20px; /* Espacio debajo de la imagen */
+        }
+
+        nav {
+            margin-top: 20px; /* Espacio adicional para el título */
+        }
+
+        h1.nombre {
+            margin-top: 40px; /* Ajustar el margen para que esté más abajo */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="nav-buttons">
-            <span>Información del Vehículo</span>
-        </div>
-        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+        <h1>Detalles del Vehículo</h1>
     </header>
-    <div class="tarjetaCarro">
-        <i class="fa-solid fa-arrow-left flechatras" onclick="regresar()"></i>
-        <!-- Imagen del carro -->
-        <div class="fotoCarro">
-            <h2>Toyota</h2>
-            <img src="images/sedan.png" alt="Vehículo">
+
+    <div id="vehicleDetails">
+        <div class="card">
+            <img id="imagen-vehiculo" src="" alt="Imagen del Vehículo">
         </div>
-
-        <div class="info-general">
-            <div class="Titulo" id="titulo-info-general">
-                <h1>Información General <i class="fa-solid fa-chevron-down"></i></h1>
-            </div>
-
-            <div class="infoCarro" id="infoCarro">
-                <div class="Info-Respuesta">
-                    <p><b>Modelo:</b></p>
-                    <span class="linea"></span>
-                    <p>Matrix XRS</p>
+        <div class="card">
+            <h2 id="marca-vehiculo"></h2>
+            <details>
+                <summary>Información General</summary>
+                <div>
+                    <p><strong>Modelo:</strong> <span id="modelo"></span></p>
+                    <p><strong>Año:</strong> <span id="anio"></span></p>
+                    <p><strong>Kilometraje:</strong> <span id="kilometraje"></span></p>
+                    <p><strong>VIN:</strong> <span id="vin"></span></p>
+                    <p><strong>Placa:</strong> <span id="placa"></span></p>
                 </div>
-                <div class="Info-Respuesta">
-                    <p><b>Año:</b></p>
-                    <span class="linea"></span>
-                    <p>2005</p>
-                </div>
-                <div class="Info-Respuesta">
-                    <p><b>Condición:</b></p>
-                    <span class="linea"></span>
-                    <p><span class="statusPromedio">Promedio</span></p>
-                </div>
-                <div class="Info-Respuesta">
-                    <p><b>Kilometraje:</b></p>
-                    <span class="linea"></span>
-                    <p>246,466 KM</p>
-                </div>
-                <div class="Info-Respuesta">
-                    <p><b>Tamaño de Llantas:</b></p>
-                    <span class="linea"></span>
-                    <p>215/65 R15</p>
-                </div>
-                <div class="Info-Respuesta">
-                    <p><b>Tipo de Rin:</b></p>
-                    <span class="linea"></span>
-                    <p>6.5Jx16 ET39</p>
-                </div>
-                <div class="Info-Respuesta">
-                    <p><b>Pintura original:</b></p>
-                    <span class="linea"></span>
-                    <p>Radiant Red</p>
-                </div>
-            </div>
+            </details>
         </div>
-
-        <div class="info-manto">
-            <div class="Titulo" id="titulo-info-manto">
-                <h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>
-            </div>
-            <div class="infoCarro" id="infoManto">
-                <div class="Info-Respuesta">
-                    <p><b>Ultimo Mantenimiento:</b></p>
-                    <span class="linea"></span>
-                    <p>28/09/2024</p>
+        <div class="card">
+            <h2>Historial</h2>
+            <details>
+                <summary>Ver Historial de Servicios</summary>
+                <div>
+                    <p>Aquí se mostrará el historial de servicios realizados para este vehículo.</p>
+                    <ul id="historial-servicios">
+                        <!-- Aquí se agregarán los servicios -->
+                    </ul>
                 </div>
-                <div class="Info-Respuesta">
-                    <p><b>Ultimo Cambio de Aceite:</b></p>
-                    <span class="linea"></span>
-                    <p>28/09/2024</p>
-                </div>
-            </div>
+            </details>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userId = localStorage.getItem("userid");
+            const vehicleId = localStorage.getItem("vehicleId");
+
+            // Console logs para verificar la recepción de los IDs
+            console.log("User  ID en info.html:", userId);
+            console.log("Vehicle ID en info.html:", vehicleId);
+
+            if (!userId || !vehicleId) {
+                alert("No se encontró información del usuario o del vehículo. Por favor, vuelve a la página anterior.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
+                if (!response.ok) {
+                    throw new Error('Error en la red');
+                }
+                const vehiculo = await response.json();
+
+                // Actualizar la información del vehículo en la página
+                document.getElementById("marca-vehiculo").innerText = vehiculo.make; // Marca
+                document.getElementById("imagen-vehiculo").src = vehiculo.imageUrl; // Mostrar la imagen
+                document.getElementById("modelo").innerText = vehiculo.model; // Modelo
+                document.getElementById("anio").innerText = vehiculo.year; // Año
+                document.getElementById("kilometraje").innerText = vehiculo.mileage; // Kilometraje
+                document.getElementById("vin").innerText = vehiculo.vin; // VIN
+                document.getElementById("placa").innerText = vehiculo.licensePlate; // Placa
+
+                // // Aquí puedes agregar la lógica para cargar el historial de servicios
+                const historialServicios = vehiculo.serviceHistory || []; // Suponiendo que el historial de servicios está en el objeto vehiculo
+                const historialList = document.getElementById("historial-servicios");
+
+                historialServicios.forEach(servicio => {
+                    const li = document.createElement("li");
+                    li.innerText = `Servicio: ${servicio.type}, Fecha: ${servicio.date}, Costo: ${servicio.cost}`;
+                    historialList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error al obtener la información del vehículo:', error);
+                alert("No se pudo cargar la información del vehículo.");
+            }
+        });
+    </script>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
         <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
-        <h1 class="nombre">Autopulse</h1>
         <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
 </body>
 </html>

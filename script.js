@@ -69,3 +69,10 @@ function ubicar() {
 function registrar() {
     window.location.href = `agregarAuto.html`;
 }
+
+function registrar2() {
+    window.location.href = `servicio.html`;
+}
+function agregarServicio() {
+    window.location.href = `agregarServicio.html`; // Cambia a la ruta deseada
+}

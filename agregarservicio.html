@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Servicio - Autopulse</title>
+    <link rel="stylesheet" href="css/style3.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
+    <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const userid = localStorage.getItem("userid");
+            const userIdDisplay = document.getElementById("userIdDisplay");
+            if (userid) {
+                userIdDisplay.textContent = `User  ID: ${userid}`;
+            } else {
+                userIdDisplay.textContent = "No se encontró un User ID. Por favor, inicia sesión.";
+            }
+
+            // Agregar el evento change al select de vehículos
+            const vehicleSelect = document.getElementById("vehicleSelect");
+            vehicleSelect.addEventListener("change", () => {
+                const vehicleId = vehicleSelect.value;
+                console.log(`Vehicle ID seleccionado: ${vehicleId}`);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="nav-buttons">
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    
+    <div class="divAgregar">
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
+    
+        <form id="serviceForm">
+            <div class="info" id="vehiculo">
+                <select class="input" id="vehicleSelect" name="vehicleSelect" required>
+                    <option value="" disabled selected>Selecciona un vehículo</option>
+                </select>
+                <label class="label">Vehículo</label>
+            </div>
+            
+            <div class="info" id="costo">
+                <input type="number" step="0.01" class="input" id="cost" name="cost" required autocomplete="off">
+                <label class="label">Costo</label>
+            </div>
+    
+            <div class="info" id="millas">
+                <input type="number" class="input" id="mileageForService" name="mileageForService" required autocomplete="off">
+                <label class="label">Millas para el servicio</label>
+            </div>
+    
+            <div class="info" id="notas">
+                <textarea class="input textarea" id="notes" name="notes" rows="3" required></textarea>
+                <label class="label" for="notes">Notas</label>
+            </div>
+    
+            <div class="info" id="centroServicio">
+                <input type="text" class="input" id="serviceCenter" name="serviceCenter" required autocomplete="off">
+                <label class="label">Centro de servicio</label>
+            </div>
+    
+            <div class="info" id="fecha">
+                <input type="date" class="input" id="serviceDate" name="serviceDate" required autocomplete="off">
+                <label class="label">Fecha del servicio</label>
+            </div>
+            
+            <div class="info" id="tipoServicio">
+                <input type="text" class="input" id="serviceType" name="serviceType" required autocomplete="off">
+                <label class="label">Tipo de servicio</label>
+            </div>
+    
+            <button type="submit" class="btn">Guardar Servicio</button>
+        </form>
+    </div>
+    
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
+    </nav>
+
+    <p id="response"></p>
+
+    <script src="/script.js"></script>
+
+    <script>
+    //Subir a la base de datos
+    
+    
+    </script>
+
+    <script>
+    //Obtener los vehiculos por usuario xd
+    document.addEventListener("DOMContentLoaded", async () => {
+        const userId = localStorage.getItem("userid");
+        if (!userId) {
+            alert("Error: No se encontró el User ID. Por favor, inicia sesión.");
+            return;
+        }
+
+        try {
+            // Llamar al endpoint para obtener los vehículos del usuario
+            const response = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles`);
+            if (!response.ok) throw new Error("Error al obtener los vehículos.");
+
+            const vehicles = await response.json();
+
+            // Obtener el elemento <select> donde se mostrarán los vehículos
+            const vehicleSelect = document.getElementById("vehicleSelect");
+
+            // Limpiar el <select> y agregar una opción por defecto
+            vehicleSelect.innerHTML = `<option value="" disabled selected>Selecciona un vehículo</option>`;
+
+            // Llenar el <select> con las opciones de vehículos
+            vehicles.forEach(vehicle => {
+                const option = document.createElement("option");
+                option.value = vehicle.id; 
+                option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.year})`; 
+                vehicleSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error al cargar los vehículos:", error.message);
+            alert("No se pudieron cargar los vehículos. Intenta más tarde.");
+        }
+    });
+    </script>
+    
+</body>
+</html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

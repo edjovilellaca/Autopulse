@@ -16,23 +16,90 @@
             // Muestra el User ID en la página
             const userIdDisplay = document.getElementById("userIdDisplay");
             if (userid) {
-                userIdDisplay.textContent = `User  ID: ${userid}`;
+                userIdDisplay.textContent = `User   ID: ${userid}`;
             } else {
                 userIdDisplay.textContent = "No se encontró un User ID. Por favor, inicia sesión.";
             }
+
+            // Inicializa la visibilidad de infoCarro e infoManto
+            const infoCarro = document.getElementById("infoCarro");
+            const infoManto = document.getElementById("infoManto");
+            infoCarro.classList.remove("show");
+            infoManto.classList.remove("show");
+
+            // Función para alternar la visibilidad
+            const toggleVisibility = (infoDiv, tituloDiv) => {
+                if (infoDiv.classList.contains("show")) {
+                    infoDiv.classList.remove("show");
+                    tituloDiv.innerHTML = '<h1>Información General <i class="fa-solid fa-chevron-down"></i></h1>';
+                } else {
+                    infoDiv.classList.add("show");
+                    tituloDiv.innerHTML = '<h1>Información General <i class="fa-solid fa-chevron-up"></i></h1>';
+                }
+            };
+
+            const toggleVisibility2 = (infoDiv, tituloDiv) => {
+                if (infoDiv.classList.contains("show")) {
+                    infoDiv.classList.remove("show");
+                    tituloDiv.innerHTML = '<h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>';
+                } else {
+                    infoDiv.classList.add("show");
+                    tituloDiv.innerHTML = '<h1>Mantenimiento <i class="fa-solid fa-chevron-up"></i></h1>';
+                }
+            };
+
+            // Eventos para los títulos
+            const tituloInfoGeneral = document.getElementById("titulo-info-general");
+            const tituloInfoManto = document.getElementById("titulo-info-manto");
+
+            tituloInfoGeneral.addEventListener("click", () => {
+                toggleVisibility(infoCarro, tituloInfoGeneral);
+            });
+
+            tituloInfoManto.addEventListener("click", () => {
+                toggleVisibility2(infoManto, tituloInfoManto);
+            });
         });
+
+        function regresar() {
+            window.location.href = `index.html`;
+        }
+
+        function princi() {
+            window.location.href = `index.html`;
+        }
+
+        function verNotificaciones() {
+            window.location.href = `notificaciones.html`;
+        }
+
+        function preguntar() {
+            window.location.href = `preguntasF.html`;
+        }
+
+        function redirigir() {
+            window.location.href = `info.html`;
+        }
+
+        function ubicar() {
+            window.location.href = `ubicaciones.html`;
+        }
+
+        function registrar() {
+            window.location.href = `agregarAuto.html`;
+        }
     </script>
 </head>
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <span onclick="regresar()">Inicio</span>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
     
     <div class="divAgregar">
-        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User   ID: </p>
         
         <form id="vehicleForm">
             <label for="file" class="file-style">
@@ -41,7 +108,7 @@
                 <input style="display: none;" type="file" id="file" name="image" accept="image/*" onchange="previewFile()">
             </label>
 
-            <div class="info" id="marca">
+            <div class="info" id=" marca">
                 <input type="text" class="input" id="make" name="make" required autocomplete="off">
                 <label class="label">Marca</label>
             </div>
@@ -74,12 +141,14 @@
             <button type="submit" class="btn">Guardar Vehículo</button>
         </form>
     </div>
+
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
         <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
-        <h1 class="nombre">Autopulse</h1>
         <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
     
     <p id="response"></p>
