@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styleinicio.css">
+    <link rel="stylesheet" href="../css/styleinicio.css">
 </head>
 <body>
     <div class="Contenedor">
@@ -52,8 +52,12 @@
 
                 if (response.ok) {
                     const data = await response.json();
+
+                    // Guarda el UID en localStorage
+                    localStorage.setItem("userid", data.uid);
+
                     alert("Inicio de sesión exitoso: " + data.message);
-                    window.location.href = "index.html";
+                    window.location.href = "index.html"; // Redirige a la página principal
                 } else {
                     const errorData = await response.json();
                     alert("Error: " + errorData.message);
@@ -66,6 +70,15 @@
         // Redirige al usuario a la página de registro al hacer clic en el botón "Registrarse"
         document.getElementById("registerButton").addEventListener("click", function() {
             window.location.href = "registrarse.html";
+        });
+
+        // Si el usuario ya está autenticado, redirigirlo automáticamente al inicio
+        document.addEventListener("DOMContentLoaded", () => {
+            const uid = localStorage.getItem("userid");
+            if (uid) {
+                alert("Ya estás autenticado. Redirigiendo al inicio...");
+                window.location.href = "index.html";
+            }
         });
     </script>
 </body>

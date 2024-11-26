@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autopulse</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -15,71 +16,8 @@
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
-    <div class="container">
-        <div class="tarjetaCarro" onclick="redirigir()">
-            <div class="fotoCarro">
-                <h2>Toyota</h2>
-                <img src="images/sedan.png" alt="Vehículo">
-            </div>
-            <div class="infoCarro">
-                <p><strong>Modelo:</strong> Matrix XRS</p>
-                <p><strong>Año:</strong> 2005</p>
-                <p><strong>Condición:</strong> <span class="statusPromedio">Promedio</span></p>
-                <p><strong>Kilometraje:</strong> 246,466</p>
-            </div>
-        </div>
-
-        <div class="tarjetaCarro" onclick="redirigir()">
-            <div class="fotoCarro">
-                <h2>Toyota</h2>
-                <img src="images/sedan.png" alt="Vehículo">
-            </div>
-            <div class="infoCarro">
-                <p><strong>Modelo:</strong> Matrix XRS</p>
-                <p><strong>Año:</strong> 2005</p>
-                <p><strong>Condición:</strong> <span class="statusBueno">Bueno</span></p>
-                <p><strong>Kilometraje:</strong> 246,466</p>
-            </div>
-        </div>
-
-        <div class="tarjetaCarro" onclick="redirigir()">
-            <div class="fotoCarro">
-                <h2>Toyota</h2>
-                <img src="images/sedan.png" alt="Vehículo">
-            </div>
-            <div class="infoCarro">
-                <p><strong>Modelo:</strong> Matrix XRS</p>
-                <p><strong>Año:</strong> 2005</p>
-                <p><strong>Condición:</strong> <span class="statusMala">Mala</span></p>
-                <p><strong>Kilometraje:</strong> 246,466</p>
-            </div>
-        </div>
-
-        <div class="tarjetaCarro" onclick="redirigir()">
-            <div class="fotoCarro">
-                <h2>Toyota</h2>
-                <img src="images/sedan.png" alt="Vehículo">
-            </div>
-            <div class="infoCarro">
-                <p><strong>Modelo:</strong> Matrix XRS</p>
-                <p><strong>Año:</strong> 2005</p>
-                <p><strong>Condición:</strong> <span class="statusMala">Mala</span></p>
-                <p><strong>Kilometraje:</strong> 246,466</p>
-            </div>
-        </div>
-
-        <div class="tarjetaCarro" onclick="redirigir()">
-            <div class="fotoCarro">
-                <h2>Toyota</h2>
-                <img src="images/sedan.png" alt="Vehículo">
-            </div>
-            <div class="infoCarro">
-                <p><strong>Modelo:</strong> Matrix XRS</p>
-                <p><strong>Año:</strong> 2005</p>
-                <p><strong>Condición:</strong> <span class="statusMala">Mala</span></p>
-                <p><strong>Kilometraje:</strong> 246,466</p>
-            </div>
-        </div>
+    <div class="container" id="autos-container">
+        <!-- Los autos se cargarán aquí dinámicamente -->
     </div>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
@@ -88,7 +26,68 @@
         <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
     </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Función para obtener los autos desde el servidor
+        async function obtenerAutos() {
+            const userId = localStorage.getItem("userid"); // Asegúrate de que el User ID esté almacenado en localStorage
+            if (!userId) {
+                alert("No se encontró un User ID. Por favor, inicia sesión.");
+                return;
+            }
+            try {
+                const response = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/`);
+                if (!response.ok) {
+                    throw new Error('Error en la red');
+                }
+                const autos = await response.json();
+                mostrarAutos(autos);
+            } catch (error) {
+                console.error('Error al obtener los autos:', error);
+            }
+        }
+
+        // Función para mostrar los autos en el contenedor
+        function mostrarAutos(autos) {
+            const container = document.getElementById('autos-container');
+            container.innerHTML = ''; // Limpiar el contenedor
+            autos.forEach(auto => {
+                const div = document.createElement('div');
+                div.className = 'tarjetaCarro'; // Clase para mantener el estilo
+                div.onclick = () => redirigir(); // Llama a la función redirigir al hacer clic
+                div.innerHTML = `
+                    <div class="fotoCarro">
+                        <h2>${auto.make}</h2>
+                        <img src="${auto.imageUrl}" alt="Vehículo" onerror="this.onerror=null; this.src='images/default-car.png';">
+                    </div>
+                    <div class="infoCarro">
+                        <p><strong>Modelo:</strong> ${auto.model}</p>
+                        <p><strong>Año:</strong> ${auto.year}</p>
+                        <p><strong>Condición:</strong> <span class="${getStatusClass(auto.condition)}">${auto.condition}</span></p>
+                        <p><strong>Kilometraje:</strong> ${auto.mileage}</p>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Función para obtener la clase de estado según la condición
+        function getStatusClass(condition) {
+            switch (condition) {
+                case 'Bueno':
+                    return 'statusBueno';
+                case 'Promedio':
+                    return 'statusPromedio';
+                case 'Mala':
+                    return 'statusMala';
+                default:
+                    return '';
+            }
+        }
+
+        // Llamar a la función para obtener los autos al cargar la página
+        window.onload = obtenerAutos;
+    </script>
 </body>
 </html>
-<script src="script.js"></script>
-<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autopulse</title>
-    <link rel="stylesheet" href="css/style3.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/header.css">
+    <title>Agregar Vehículo - Autopulse</title>
+    <link rel="stylesheet" href="/css/style3.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Recupera el uid de localStorage
+            const userid = localStorage.getItem("userid");
+
+            // Muestra el User ID en la página
+            const userIdDisplay = document.getElementById("userIdDisplay");
+            if (userid) {
+                userIdDisplay.textContent = `User  ID: ${userid}`;
+            } else {
+                userIdDisplay.textContent = "No se encontró un User ID. Por favor, inicia sesión.";
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -15,42 +30,50 @@
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
+    
     <div class="divAgregar">
-        <label for="file" class="file-style">
-            <img id="previewImage" src="./images/upload.png">
-            <div id="mensaje"><p>Elegir Imagen</p></div>
-            <input style="display: none;" type="file" id="file" name="fileImg" accept="image/*" onchange="previewFile()">
-        </label>
-
-        <div class="info" id="marca">
-            <input type="text" class="input"required autocomplete="off">
-            <label class="label">Marca</label>
-        </div>
-
-        <div class="info" id="modelo">
-            <input type="text" class="input"required autocomplete="off">
-            <label class="label">Modelo</label>
-        </div>
-
-        <div class="info" id="year">
-            <input type="text" class="input"required autocomplete="off">
-            <label class="label">Año</label>
-        </div>
-
-        <div class="info" id="color">
-            <input type="text" class="input"required autocomplete="off">
-            <label class="label">Color</label>
-        </div>
-
-        <button class="btn">Guardar</button>
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
         
+        <form id="vehicleForm">
+            <label for="file" class="file-style">
+                <img id="previewImage" src="./images/upload.png">
+                <div id="mensaje"><p>Elegir Imagen</p></div>
+                <input style="display: none;" type="file" id="file" name="image" accept="image/*" onchange="previewFile()">
+            </label>
+
+            <div class="info" id="marca">
+                <input type="text" class="input" id="make" name="make" required autocomplete="off">
+                <label class="label">Marca</label>
+            </div>
+
+            <div class="info" id="modelo">
+                <input type="text" class="input" id="model" name="model" required autocomplete="off">
+                <label class="label">Modelo</label>
+            </div>
+
+            <div class="info" id="year">
+                <input type="number" class="input" id="year" name="year" required autocomplete="off">
+                <label class="label">Año</label>
+            </div>
+
+            <div class="info" id="vin">
+                <input type="text" class="input" id="vin" name="vin" required autocomplete="off">
+                <label class="label">VIN</label>
+            </div>
+
+            <div class="info" id="placa">
+                <input type="text" class="input" id="licensePlate" name="licensePlate" required autocomplete="off">
+                <label class="label">Placa</label>
+            </div>
+
+            <div class="info" id="kilometraje">
+                <input type="number" class="input" id="mileage" name="mileage" required autocomplete="off">
+                <label class="label">Kilometraje</label>
+            </div>
+
+            <button type="submit" class="btn">Guardar Vehículo</button>
+        </form>
     </div>
-    <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <h1 class="nombre">Autopulse</h1>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-    </nav>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
         <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
@@ -58,41 +81,71 @@
         <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
     </nav>
+    
+    <p id="response"></p>
+
+    <script>
+        // Previsualización de imagen y validación de tamaño
+        async function previewFile() {
+            const preview = document.getElementById('previewImage');
+            const file = document.getElementById('file').files[0];
+            const mensajeDiv = document.getElementById('mensaje');
+            const maxSize = 1.5e+6; // 1.5 MB
+
+            if (!file) {
+                mensajeDiv.innerHTML = "<p>Elegir Imagen</p>";
+                preview.src = "./images/upload.png";
+                return;
+            }
+
+            if (file.size > maxSize) {
+                const tamanioEnMb = maxSize / 1000000;
+                mensajeDiv.innerHTML = `<p>Error: El tamaño máximo es ${tamanioEnMb} MB</p>`;
+                preview.src = "./images/reintentar.png";
+                return;
+            } else {
+                mensajeDiv.innerHTML = "";
+                preview.style.width = "90%";
+                preview.src = URL.createObjectURL(file);
+                preview.onload = function() {
+                    URL.revokeObjectURL(preview.src);
+                };
+            }
+        }
+
+        // Envío del formulario al backend
+        document.getElementById("vehicleForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+    
+            const form = document.getElementById("vehicleForm");
+            const formData = new FormData(form);
+    
+            // Recupera el User ID dinámicamente de localStorage
+            const userId = localStorage.getItem("userid");
+            if (!userId) {
+                alert("Error: No se encontró el User ID. Por favor, inicia sesión.");
+                return;
+            }
+    
+            const endpoint = `https://backend-autoplus.onrender.com/users/${userId}/vehicles/`;
+    
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    body: formData,
+                });
+    
+                if (response.ok) {
+                    alert("Auto agregado");
+                    window.location.href = "index.html"; // Redirige al índice
+                } else {
+                    const result = await response.json();
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                alert(`Error de red: ${error.message}`);
+            }
+        });
+    </script>
 </body>
 </html>
-<script src="script.js"></script>
-<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
-<script>
-    async function previewFile() {
-        var preview = document.getElementById('previewImage');
-        var file = document.getElementById('file').files[0];
-        var mensajeDiv = document.getElementById('mensaje');
-        const maxSize = 1.5e+6; 
-
-        if (!file) {
-
-            mensajeDiv.innerHTML = "<p>Elegir Imagen</p>";
-            preview.src = "./images/upload.png";
-            return;
-
-        }
-
-        if (file.size > maxSize) {
-
-            const tamanioEnMb = maxSize / 1000000;
-            mensajeDiv.innerHTML = `<p>Error: El tamaño máximo es ${tamanioEnMb} MB</p>`;
-            preview.src = "./images/reintentar.png";
-            return;
-
-        } else {
-            
-            mensajeDiv.remove();
-            preview.style.width = "90%";
-            preview.src = URL.createObjectURL(file);
-            preview.onload = function() {
-                URL.revokeObjectURL(preview.src); 
-            };
-
-        }
-    }
-</script>
