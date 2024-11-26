@@ -6,8 +6,15 @@
     <title>Autopulse</title>
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
+    <header>
+        <div class="nav-buttons">
+            <span>Información del Vehículo</span>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
     <div class="tarjetaCarro">
         <i class="fa-solid fa-arrow-left flechatras" onclick="regresar()"></i>
         <!-- Imagen del carro -->
@@ -80,11 +87,12 @@
     </div>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
         <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
     </nav>
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
-
 </body>
 </html>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
