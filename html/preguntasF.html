@@ -12,7 +12,9 @@
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
@@ -63,14 +65,15 @@
         </div>
     </div>
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-house casita" onclick="princi()" title="Inicio"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()" title="Notificaciones"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()" title="Ubicaciones"></i>
         <h1 class="nombre">Autopulse</h1>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()" title="Registrar Auto"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
         <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
 </body>
 </html>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

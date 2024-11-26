@@ -12,7 +12,9 @@
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
@@ -20,13 +22,16 @@
         <!-- Los autos se cargarán aquí dinámicamente -->
     </div>
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-house casita" onclick="princi()" title="Inicio"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()" title="Notificaciones"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()" title="Ubicaciones"></i>
         <h1 class="nombre">Autopulse</h1>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()" title="Registrar Auto"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
         <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
+    
+    <script src="/script.js"></script>
 
     <script>
         function cerrarSesion() {
@@ -40,9 +45,9 @@
             for (let name of names) {
                 caches.delete(name); // Borra cada caché encontrado
             }
-            console.log("Caché eliminado.");
+
         }).catch(err => {
-            console.error("Error al limpiar caché:", err);
+
         });
     }
 
@@ -57,7 +62,6 @@
     // 3. Limpiar localStorage y sessionStorage
     localStorage.clear();
     sessionStorage.clear();
-    console.log("Almacenamiento local y de sesión eliminado.");
 
     // 4. Mensaje y redirección
     alert("Has cerrado sesión exitosamente.");

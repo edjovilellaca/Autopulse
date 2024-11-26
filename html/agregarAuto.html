@@ -26,10 +26,13 @@
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
+    
     
     <div class="divAgregar">
         <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
@@ -75,14 +78,17 @@
         </form>
     </div>
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-house casita" onclick="princi()" title="Inicio"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()" title="Notificaciones"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()" title="Ubicaciones"></i>
         <h1 class="nombre">Autopulse</h1>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()" title="Registrar Auto"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
         <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
     
+    <script src="/script.js"></script>
+
     <p id="response"></p>
 
     <script>
@@ -149,6 +155,5 @@
         });
     </script>
 
-<script src="script.js"></script>
 </body>
 </html>
