@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
     <header>
         <div class="nav-buttons">
@@ -62,10 +64,17 @@
                 <h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>
             </div>
             <div class="infoCarro" id="infoManto">
-<!--            <div id="mantenimiento-container">
-                </div> -->
+                <!-- Historial de mantenimiento -->
             </div>
         </div>
+        <!-- <div class="info-mods">
+            <div class="Titulo" id="titulo-info-mods">
+                <h1>Modificaciones <i class="fa-solid fa-chevron-down"></i></h1>
+            </div>
+            <div class="infoModis" id="infoMods">
+
+            </div>
+        </div> -->
     </div>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
@@ -90,6 +99,7 @@
                 window.location.href = "/inicio.html";
                 return;
             }
+
 
             try {
                 const responseAutos = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
@@ -138,18 +148,39 @@
                     infoR.append(spanALoWey);
                     infoR.append(spanALoWey);
                     infoR.append(spanALoWey);
-                    
+
                     historialServiciosList.appendChild(infoR);
                 });
 
-                const historialModificacionesList = document.getElementById("historial-modificaciones")
+                // Renderizar historial de modificaciones
+                const historialModificacionesList = document.getElementById("infoMods");
 
                 historialModificaciones.forEach(modificacion => {
-                    const li = document.createElement("li");
-                    li.innerText = `Tipo: ${modificacion.modificationType}, Costo: ${modificacion.cost}, Taller: ${modificacion.performedBy}`;
-                    
-                    historialModificacionesList.appendChild(li);
-                })
+                    const infoR = document.createElement('div');
+                    const tipo = document.createElement('p');
+                    const linea = document.createElement('span');
+                    const costo = document.createElement('p');
+                    const taller = document.createElement('p');
+                    const spanALoWey = document.createElement('br');
+
+                    infoR.setAttribute('class', 'Info-Respuesta-Manto');
+
+                    tipo.innerHTML = `<b>Modificación:</b> ${modificacion.modificationType}`;
+                    linea.setAttribute('class', 'linea2');
+                    costo.innerHTML = `Costo: ${modificacion.cost}`;
+                    taller.innerHTML = `Realizado por: ${modificacion.performedBy}`;
+
+                    infoR.append(tipo);
+                    infoR.append(linea);
+                    infoR.append(costo);
+                    infoR.append(taller);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+
+                    historialModificacionesList.appendChild(infoR);
+                });
+
             } catch (error) {
                 console.error('Error al obtener la información del vehículo:', error);
                 //alert("No se pudo cargar la información del vehículo.");

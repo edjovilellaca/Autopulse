@@ -77,6 +77,14 @@ function agregarServicio() {
     window.location.href = `agregarservicio.html`; // Cambia a la ruta deseada
 }
 
+function mostrarFormularioServicio() {
+    document.getElementById("formulario-servicio").style.display = "block";
+}
+
+function cerrarFormularioServicio() {
+    document.getElementById("formulario-servicio").style.display = "none";
+}
+
 function cerrarSesion() {
     // Confirmación opcional para cerrar sesión
     const confirmacion = confirm("¿Estás seguro de que deseas cerrar sesión?");
