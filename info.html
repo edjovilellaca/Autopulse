@@ -75,10 +75,10 @@
     </div>
     <nav>
         <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
         <h1 class="nombre">Autopulse</h1>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config casita" onclick="registrar()"></i>
     </nav>
 
     <script>
@@ -92,6 +92,7 @@
 
             if (!userId || !vehicleId) {
                 alert("No se encontró información del usuario o del vehículo. Por favor, vuelve a la página anterior.");
+                window.location.href = "/inicio.html";
                 return;
             }
 
@@ -136,7 +137,7 @@
                 })
             } catch (error) {
                 console.error('Error al obtener la información del vehículo:', error);
-                alert("No se pudo cargar la información del vehículo.");
+                //alert("No se pudo cargar la información del vehículo.");
             }
         });
     </script>
