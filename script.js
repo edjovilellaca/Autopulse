@@ -74,5 +74,5 @@ function registrar2() {
     window.location.href = `servicio.html`;
 }
 function agregarServicio() {
-    window.location.href = `agregarServicio.html`; // Cambia a la ruta deseada
+    window.location.href = `agregarservicio.html`; // Cambia a la ruta deseada
 }
