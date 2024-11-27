@@ -73,11 +73,25 @@ h1{
     flex-direction: row;
 }
 
+.Info-Respuesta-Manto {
+    display: flex;
+    align-items: left;
+    gap: 5px;
+    flex-direction: column;
+}
+
 .linea{
     flex-grow: 1;
     height: 1px;
     background-color: #ccc;
     margin: 1.12rem 2px 0 2px;
+}
+
+.linea2{
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 2px 0 2px;
 }
 
 .fotoCarro h2 {
@@ -92,6 +106,8 @@ p{
     font-size: 1.04rem;
 }
 
-.statusPromedio {
-    color: orange;
+.Info-Respuesta-Manto p{
+    margin: 1px 0;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.04rem;
 }

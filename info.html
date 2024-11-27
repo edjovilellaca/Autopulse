@@ -40,14 +40,9 @@
                     <p id="anio">2005</p>
                 </div>
                 <div class="Info-Respuesta">
-                    <p><b>Condición:</b></p>
-                    <span class="linea"></span>
-                    <p><span class="statusPromedio" id="condicion">Promedio</span></p>
-                </div>
-                <div class="Info-Respuesta">
                     <p><b>Kilometraje:</b></p>
                     <span class="linea"></span>
-                    <p id="kilometraje">246,466 KM</p>
+                    <p id="kilometraje">0 KM</p>
                 </div>
                 <div class="Info-Respuesta">
                     <p><b>Placa:</b></p>
@@ -57,7 +52,7 @@
                 <div class="Info-Respuesta">
                     <p><b>VIN:</b></p>
                     <span class="linea"></span>
-                    <p id="vin">1HGBH41JXMN109186</p>
+                    <p id="vin">Sin Registrar</p>
                 </div>
             </div>
         </div>
@@ -67,9 +62,8 @@
                 <h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>
             </div>
             <div class="infoCarro" id="infoManto">
-                <div id="mantenimiento-container">
-                    <!-- Aquí se cargarán los datos dinámicos del mantenimiento -->
-                </div>
+<!--            <div id="mantenimiento-container">
+                </div> -->
             </div>
         </div>
     </div>
@@ -119,12 +113,32 @@
                 document.getElementById("placa").innerText = vehiculo.licensePlate; // Placa
 
                 // // Aquí puedes agregar la lógica para cargar el historial de servicios
-                const historialServiciosList = document.getElementById("historial-servicios");
+                const historialServiciosList = document.getElementById("infoManto");
 
                 historialServicios.forEach(servicio => {
-                    const li = document.createElement("li");
-                    li.innerText = `Servicio: ${servicio.serviceType}, Fecha: ${servicio.serviceDate}, Costo: ${servicio.cost}`;
-                    historialServiciosList.appendChild(li);
+                    const infoR = document.createElement('div');
+                    const servi = document.createElement('p');
+                    const linea = document.createElement('span');
+                    const fecha = document.createElement('p');
+                    const costo = document.createElement('p');
+                    const spanALoWey = document.createElement('br');
+
+                    infoR.setAttribute('class', 'Info-Respuesta-Manto');
+
+                    servi.innerHTML = `<b>Servicio:</b> ${servicio.serviceType}`;
+                    linea.setAttribute('class', 'linea2');
+                    fecha.innerHTML = `Fecha: ${servicio.serviceDate}`;
+                    costo.innerHTML = `Costo: ${servicio.cost}`;
+
+                    infoR.append(servi);
+                    infoR.append(linea);
+                    infoR.append(fecha);
+                    infoR.append(costo);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+                    
+                    historialServiciosList.appendChild(infoR);
                 });
 
                 const historialModificacionesList = document.getElementById("historial-modificaciones")
