@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/header.css">
     <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Recupera el uid de localStorage
             const userid = localStorage.getItem("userid");
-
             // Muestra el User ID en la página
             const userIdDisplay = document.getElementById("userIdDisplay");
             if (userid) {
@@ -22,6 +22,7 @@
             }
         });
     </script>
+
 </head>
 <body>
     <header>
@@ -36,7 +37,8 @@
     
     <div class="divAgregar">
         <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
-        
+        <p id="userNameDisplay" style="margin-bottom: 20px; font-weight: bold;">Bienvenido: </p>
+
         <form id="vehicleForm">
             <label for="file" class="file-style">
                 <img id="previewImage" src="./images/upload.png">
