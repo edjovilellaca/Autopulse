@@ -40,11 +40,10 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Detalles del Vehículo</h1>
-    </header>
-
     <div id="vehicleDetails">
+        <header>
+            <h1>Detalles del Vehículo</h1>
+        </header>
         <div class="card">
             <img id="imagen-vehiculo" src="" alt="Imagen del Vehículo">
         </div>
@@ -62,12 +61,22 @@
             </details>
         </div>
         <div class="card">
-            <h2>Historial</h2>
+            <h2>Servicios</h2>
             <details>
                 <summary>Ver Historial de Servicios</summary>
                 <div>
-                    <p>Aquí se mostrará el historial de servicios realizados para este vehículo.</p>
                     <ul id="historial-servicios">
+                        <!-- Aquí se agregarán los servicios -->
+                    </ul>
+                </div>
+            </details>
+        </div>
+        <div class="card">
+            <h2>Modificaciones</h2>
+            <details>
+                <summary>Ver Historial de Modificaciones</summary>
+                <div>
+                    <ul id="historial-modificaciones">
                         <!-- Aquí se agregarán los servicios -->
                     </ul>
                 </div>
@@ -90,11 +99,17 @@
             }
 
             try {
-                const response = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
-                if (!response.ok) {
+                const responseAutos = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
+                const responseServicios = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/serviceHistory`);
+                const responseModificaciones = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/vehicleModifications`);
+
+                if (!responseAutos.ok) {
                     throw new Error('Error en la red');
                 }
-                const vehiculo = await response.json();
+
+                const vehiculo = await responseAutos.json();
+                const historialServicios = await responseServicios.json(); // Suponiendo que el historial de servicios está en el objeto vehiculo
+                const historialModificaciones = await responseModificaciones.json();
 
                 // Actualizar la información del vehículo en la página
                 document.getElementById("marca-vehiculo").innerText = vehiculo.make; // Marca
@@ -106,14 +121,22 @@
                 document.getElementById("placa").innerText = vehiculo.licensePlate; // Placa
 
                 // // Aquí puedes agregar la lógica para cargar el historial de servicios
-                const historialServicios = vehiculo.serviceHistory || []; // Suponiendo que el historial de servicios está en el objeto vehiculo
-                const historialList = document.getElementById("historial-servicios");
+                const historialServiciosList = document.getElementById("historial-servicios");
 
                 historialServicios.forEach(servicio => {
                     const li = document.createElement("li");
-                    li.innerText = `Servicio: ${servicio.type}, Fecha: ${servicio.date}, Costo: ${servicio.cost}`;
-                    historialList.appendChild(li);
+                    li.innerText = `Servicio: ${servicio.serviceType}, Fecha: ${servicio.serviceDate}, Costo: ${servicio.cost}`;
+                    historialServiciosList.appendChild(li);
                 });
+
+                const historialModificacionesList = document.getElementById("historial-modificaciones")
+
+                historialModificaciones.forEach(modificacion => {
+                    const li = document.createElement("li");
+                    li.innerText = `Tipo: ${modificacion.modificationType}, Costo: ${modificacion.cost}, Taller: ${modificacion.performedBy}`;
+                    
+                    historialModificacionesList.appendChild(li);
+                })
             } catch (error) {
                 console.error('Error al obtener la información del vehículo:', error);
                 alert("No se pudo cargar la información del vehículo.");
