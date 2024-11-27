@@ -12,9 +12,7 @@
 <body>
     <header>
         <div class="nav-buttons">
-            <button onclick="princi()" style="all: unset; cursor: pointer;">
-                <span>Inicio</span>
-            </button>
+            <span>Inicio</span>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
@@ -30,13 +28,39 @@
         <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
         <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
-    
+
     <script src="/script.js"></script>
 
     <script>
-        // Función para obtener los autos desde el servidor
+        // Confirmación para cerrar sesión
+        function cerrarSesion() {
+            const confirmacion = confirm("¿Estás seguro de que deseas cerrar sesión?");
+            if (!confirmacion) return;
+
+            if ('caches' in window) {
+                caches.keys().then(function (names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                    }
+                }).catch(err => {
+                    console.error("Error al limpiar cachés:", err);
+                });
+            }
+
+            document.cookie.split(";").forEach(cookie => {
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+            });
+            localStorage.clear();
+            sessionStorage.clear();
+
+            alert("Has cerrado sesión exitosamente.");
+            window.location.href = 'inicio.html';
+        }
+
         async function obtenerAutos() {
-            const userId = localStorage.getItem("userid"); // Asegúrate de que el User ID esté almacenado en localStorage
+            const userId = localStorage.getItem("userid");
             if (!userId) {
                 alert("No se encontró un User ID. Por favor, inicia sesión.");
                 return;
@@ -53,14 +77,13 @@
             }
         }
 
-        // Función para mostrar los autos en el contenedor
         function mostrarAutos(autos) {
             const container = document.getElementById('autos-container');
-            container.innerHTML = ''; // Limpiar el contenedor
+            container.innerHTML = '';
             autos.forEach(auto => {
                 const div = document.createElement('div');
-                div.className = 'tarjetaCarro'; // Clase para mantener el estilo
-                div.onclick = () => redirigir(); // Llama a la función redirigir al hacer clic
+                div.className = 'tarjetaCarro';
+                div.onclick = () => redirigir();
                 div.innerHTML = `
                     <div class="fotoCarro">
                         <h2>${auto.make}</h2>
@@ -77,7 +100,6 @@
             });
         }
 
-        // Función para obtener la clase de estado según la condición
         function getStatusClass(condition) {
             switch (condition) {
                 case 'Bueno':
@@ -91,7 +113,6 @@
             }
         }
 
-        // Llamar a la función para obtener los autos al cargar la página
         window.onload = obtenerAutos;
     </script>
 </body>

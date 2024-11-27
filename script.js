@@ -68,6 +68,10 @@ function preguntar(){
     window.location.href = `preguntasF.html`;
 }
 
+function redirigir(){
+    window.location.href = `info.html`;
+}
+
 function cerrarSesion() {
     // Confirmación opcional para cerrar sesión
     const confirmacion = confirm("¿Estás seguro de que deseas cerrar sesión?");
