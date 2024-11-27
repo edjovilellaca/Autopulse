@@ -80,11 +80,11 @@
                 div.innerHTML = `
                     <div class="fotoCarro">
                         <h2>${vehicle.make}</h2>
-                        <img src="${vehicle.imageUrl}" alt="Vehículo" onerror="this.onerror=null; this.src='images/default-car.png';">
+                        <img src="${vehicle.imageUrl}" alt="Vehículo" onerror="this.onerror=null; this.src='images/sedan.png';">
                     </div>
                     <div class="infoCarro">
                         <p><strong>Modelo:</strong> ${vehicle.model}</p>
-                        <p><strong>Vehicle ID:</strong> ${vehicleId}</p>
+                        <p><strong>Placa:</strong> ${vehicle.vin}</p>
                     </div>
                 `;
                 container.appendChild(div);

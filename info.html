@@ -106,7 +106,7 @@
 
                 // Actualizar la información del vehículo en la página
                 document.getElementById("marca-vehiculo").innerText = vehiculo.make; // Marca
-                document.getElementById("imagen-vehiculo").src = vehiculo.imageUrl; // Mostrar la imagen
+                document.getElementById("imagen-vehiculo").src = vehiculo.imageUrl || `images/sedan.png`; // Mostrar la imagen
                 document.getElementById("modelo").innerText = vehiculo.model; // Modelo
                 document.getElementById("anio").innerText = vehiculo.year; // Año
                 document.getElementById("kilometraje").innerText = vehiculo.mileage; // Kilometraje
