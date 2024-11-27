@@ -7,8 +7,17 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #69075c; /* 9F111B */
+    background: #9F111B;
     height: 100%;
+}
+
+.nombre{
+    background: linear-gradient(90deg, rgba(63,68,88,1) 0%, rgba(177,22,35,1) 35%, rgba(176,158,158,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
 }
 
 .container {
@@ -17,7 +26,7 @@ body {
     gap: 20px;
     align-items: center;
     width: 100%;
-    padding-top: 4%;
+    padding-top: 10%;
     padding-bottom: 25%;
 }
 

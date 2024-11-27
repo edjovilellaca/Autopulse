@@ -67,15 +67,17 @@ input{
 	font-size: 1.3rem;
 	width: 70%;
 	margin-bottom: 20px;
+    margin-top: 30px;
 	padding: 5% 0 2% 2%;
     position: relative;
 }
 
 .label {
+    margin-top: 10px;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 2rem;
     color: #cccccc;
     pointer-events: none;
@@ -99,11 +101,17 @@ input:valid ~ .label {
     background-color: #9F111B;
     color: #cccccc;
     font-size: 1.5rem;
-    width: 45%;
+    width: 65%;
     height: 15%;
     align-self: center;
     border: none;
     outline: none;
     padding: 10px 0;
     text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 12%;
 }

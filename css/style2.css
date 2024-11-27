@@ -68,8 +68,9 @@ h1{
 
 .Info-Respuesta {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 5px;
+    flex-direction: column;
 }
 
 .linea{

@@ -7,82 +7,79 @@
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/header.css">
-    <style>
-        #vehicleDetails {
-            display: flex;
-            flex-direction: column; /* Cambiado a columna para apilar elementos */
-            align-items: flex-start;
-            margin: 20px;
-        }
-
-        .card {
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px; /* Espacio entre la imagen y la información */
-            width: 100%; /* Asegura que la tarjeta ocupe el ancho completo */
-        }
-
-        #imagen-vehiculo {
-            max-width: 300px;
-            margin-bottom: 20px; /* Espacio debajo de la imagen */
-        }
-
-        nav {
-            margin-top: 20px; /* Espacio adicional para el título */
-        }
-
-        h1.nombre {
-            margin-top: 40px; /* Ajustar el margen para que esté más abajo */
-        }
-    </style>
 </head>
 <body>
-    <div id="vehicleDetails">
-        <header>
-            <h1>Detalles del Vehículo</h1>
-        </header>
-        <div class="card">
-            <img id="imagen-vehiculo" src="" alt="Imagen del Vehículo">
+    <header>
+        <div class="nav-buttons">
+            <span>Información del Vehículo</span>
         </div>
-        <div class="card">
-            <h2 id="marca-vehiculo"></h2>
-            <details>
-                <summary>Información General</summary>
-                <div>
-                    <p><strong>Modelo:</strong> <span id="modelo"></span></p>
-                    <p><strong>Año:</strong> <span id="anio"></span></p>
-                    <p><strong>Kilometraje:</strong> <span id="kilometraje"></span></p>
-                    <p><strong>VIN:</strong> <span id="vin"></span></p>
-                    <p><strong>Placa:</strong> <span id="placa"></span></p>
-                </div>
-            </details>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    <div class="tarjetaCarro">
+        <i class="fa-solid fa-arrow-left flechatras" onclick="regresar()"></i>
+        <!-- Imagen del carro -->
+        <div class="fotoCarro">
+            <h2 id="marca-vehiculo">Toyota</h2>
+            <img id="imagen-vehiculo" src="images/sedan.png" alt="Vehículo">
         </div>
-        <div class="card">
-            <h2>Servicios</h2>
-            <details>
-                <summary>Ver Historial de Servicios</summary>
-                <div>
-                    <ul id="historial-servicios">
-                        <!-- Aquí se agregarán los servicios -->
-                    </ul>
+
+        <div class="info-general">
+            <div class="Titulo" id="titulo-info-general">
+                <h1>Información General <i class="fa-solid fa-chevron-down"></i></h1>
+            </div>
+
+            <div class="infoCarro" id="infoCarro">
+                <div class="Info-Respuesta">
+                    <p><b>Modelo:</b></p>
+                    <span class="linea"></span>
+                    <p id="modelo">Matrix XRS</p>
                 </div>
-            </details>
+                <div class="Info-Respuesta">
+                    <p><b>Año:</b></p>
+                    <span class="linea"></span>
+                    <p id="anio">2005</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Condición:</b></p>
+                    <span class="linea"></span>
+                    <p><span class="statusPromedio" id="condicion">Promedio</span></p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Kilometraje:</b></p>
+                    <span class="linea"></span>
+                    <p id="kilometraje">246,466 KM</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Placa:</b></p>
+                    <span class="linea"></span>
+                    <p id="placa">XYZ-1234</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>VIN:</b></p>
+                    <span class="linea"></span>
+                    <p id="vin">1HGBH41JXMN109186</p>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h2>Modificaciones</h2>
-            <details>
-                <summary>Ver Historial de Modificaciones</summary>
-                <div>
-                    <ul id="historial-modificaciones">
-                        <!-- Aquí se agregarán los servicios -->
-                    </ul>
+
+        <div class="info-manto">
+            <div class="Titulo" id="titulo-info-manto">
+                <h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>
+            </div>
+            <div class="infoCarro" id="infoManto">
+                <div id="mantenimiento-container">
+                    <!-- Aquí se cargarán los datos dinámicos del mantenimiento -->
                 </div>
-            </details>
+            </div>
         </div>
     </div>
+    <nav>
+        <i class="fa-solid fa-house casita" onclick="princi()"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+    </nav>
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
@@ -143,14 +140,6 @@
             }
         });
     </script>
-    <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
-        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
-    </nav>
 </body>
 </html>
 <script src="script.js"></script>
