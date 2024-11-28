@@ -42,7 +42,7 @@
                     vehicles.forEach(vehicle => {
                         const option = document.createElement("option");
                         option.value = vehicle.vehicleId;
-                        option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.vin})`;
+                        option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.year})`;
                         vehicleSelect.appendChild(option);
                         console.log(`Opción añadida: ${vehicle.vehicleId} - ${vehicle.make} ${vehicle.model}`);
                     });
@@ -79,7 +79,7 @@
                 }
 
                 const serviceDateInput = document.getElementById("serviceDate");
-                const serviceDate = serviceDateInput.value.trim();
+                const serviceDate = serviceDateInput.value;
                 if (!serviceDate) {
                     alert("Error: Debes ingresar una fecha.");
                     return;
@@ -112,23 +112,37 @@
                 }
 
                 
-                formdata.set("serviceDate", serviceDate);
+                formData.set("serviceDate", serviceDate);
                 formData.set("serviceType", serviceType);
                 formData.set("mileageAtService", mileageAtService);
                 formData.set("cost", cost);
                 formData.set("serviceCenter", serviceCenter);
                 formData.set("notes", notes);
 
+                const dataFormService = {
+                    
+                    serviceType,
+                    serviceDate: "2024-10-10",
+                    mileageAtService,
+                    cost,
+                    serviceCenter,
+                    notes
+                }
+
                 for (let [key, value] of formData.entries()) {
                     console.log(`${key}: ${value}`);
                 }
+                console.log("Datos enviados a Firestore:", dataFormService);
 
                 const endpoint = `https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/serviceHistory`;
 
                 try {
                     const response = await fetch(endpoint, {
                         method: "POST",
-                        body: formData,
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(dataFormService),
                     });
 
                     if (response.ok) {
@@ -156,7 +170,7 @@
     </header>
     
     <div class="divAgregar">
-        <!-- <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p> -->
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
     
         <form id="serviceForm">
             <div class="info" id="vehiculo">
@@ -200,13 +214,12 @@
         </form>
     </div>
     
-    <nav style="position: fixed; bottom: 0; width: 100%; background-color: white; text-align: center;">
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell" onclick="verNotificaciones()"></i>
-        <i class="fa-solid fa-location-dot" onclick="ubicar()"></i>
+    <nav>
+        <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
+        <i class="fa-solid fa-house casita2S" onclick="princi()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
-        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
 
     <p id="response"></p>

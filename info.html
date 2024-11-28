@@ -67,21 +67,20 @@
                 <!-- Historial de mantenimiento -->
             </div>
         </div>
-        <!-- <div class="info-mods">
+        <div class="info-mods">
             <div class="Titulo" id="titulo-info-mods">
                 <h1>Modificaciones <i class="fa-solid fa-chevron-down"></i></h1>
             </div>
-            <div class="infoModis" id="infoMods">
+            <div class="infoCarro" id="infoModis">
 
             </div>
-        </div> -->
+        </div>
     </div>
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
         <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
         <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
+        <i class="fa-solid fa-house casita2" onclick="princi()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-right-from-bracket casita" onclick="cerrarSesion()" title="Cerrar sesión"></i>
         <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
 
@@ -153,7 +152,7 @@
                 });
 
                 // Renderizar historial de modificaciones
-                const historialModificacionesList = document.getElementById("infoMods");
+                const historialModificacionesList = document.getElementById("infoModis");
 
                 historialModificaciones.forEach(modificacion => {
                     const infoR = document.createElement('div');
@@ -163,7 +162,7 @@
                     const taller = document.createElement('p');
                     const spanALoWey = document.createElement('br');
 
-                    infoR.setAttribute('class', 'Info-Respuesta-Manto');
+                    infoR.setAttribute('class', 'Info-Respuesta-Mods');
 
                     tipo.innerHTML = `<b>Modificación:</b> ${modificacion.modificationType}`;
                     linea.setAttribute('class', 'linea2');
@@ -189,5 +188,5 @@
     </script>
 </body>
 </html>
-<script src="script.js"></script>
+<script src="scriptCSS.js"></script>
 <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
