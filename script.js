@@ -72,6 +72,15 @@ function redirigir(){
     window.location.href = `info.html`;
 }
 
+function redireccionarModificaciones() {
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "modificaciones.html"; // Redirige a la pantalla de modificaciones
+}
+
+
 function cerrarSesion() {
     // Confirmación opcional para cerrar sesión
     const confirmacion = confirm("¿Estás seguro de que deseas cerrar sesión?");
@@ -104,4 +113,20 @@ function cerrarSesion() {
     // 4. Mensaje y redirección
     alert("Has cerrado sesión exitosamente.");
     window.location.href = 'inicio.html'; // Cambia 'inicio.html' a la URL de tu página de inicio de sesión
+}
+
+
+function toggleModificaciones() {
+    const infoModis = document.getElementById("infoModis");
+    const chevronMods = document.getElementById("chevron-mods");
+
+    if (infoModis.style.display === "none" || infoModis.style.display === "") {
+        infoModis.style.display = "block"; // Mostrar contenido
+        chevronMods.classList.remove("fa-chevron-down");
+        chevronMods.classList.add("fa-chevron-up"); // Cambiar icono
+    } else {
+        infoModis.style.display = "none"; // Ocultar contenido
+        chevronMods.classList.remove("fa-chevron-up");
+        chevronMods.classList.add("fa-chevron-down"); // Cambiar icono
+    }
 }

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autopulse</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-buttons">
+            <span>Información del Vehículo</span>
+        </div>
+        <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
+    </header>
+    <div class="tarjetaCarro">
+        <i class="fa-solid fa-arrow-left flechatras" onclick="regresar()"></i>
+        <!-- Imagen del carro -->
+        <div class="fotoCarro">
+            <h2 id="marca-vehiculo">Toyota</h2>
+            <img id="imagen-vehiculo" src="images/sedan.png" alt="Vehículo">
+        </div>
+
+        <div class="info-general">
+            <div class="Titulo" id="titulo-info-general">
+                <h1>Información General <i class="fa-solid fa-chevron-down"></i></h1>
+            </div>
+
+            <div class="infoCarro" id="infoCarro">
+                <div class="Info-Respuesta">
+                    <p><b>Modelo:</b></p>
+                    <span class="linea"></span>
+                    <p id="modelo">Matrix XRS</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Año:</b></p>
+                    <span class="linea"></span>
+                    <p id="anio">2005</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Kilometraje:</b></p>
+                    <span class="linea"></span>
+                    <p id="kilometraje">0 KM</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>Placa:</b></p>
+                    <span class="linea"></span>
+                    <p id="placa">XYZ-1234</p>
+                </div>
+                <div class="Info-Respuesta">
+                    <p><b>VIN:</b></p>
+                    <span class="linea"></span>
+                    <p id="vin">Sin Registrar</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-manto">
+            <div class="Titulo" id="titulo-info-manto">
+                <h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>
+            </div>
+            <div class="infoCarro" id="infoManto">
+                <!-- Historial de mantenimiento -->
+            </div>
+        </div>
+        <div class="info-mods">
+            <div class="Titulo" id="titulo-info-mods" onclick="toggleModificaciones()">
+                <h1>Modificaciones <i class="fa-solid fa-chevron-down" id="chevron-mods"></i></h1>
+            </div>
+            <div class="infoCarro" id="infoModis" style="display: none;">
+                <button class="btn-agregar" onclick="redireccionarModificaciones()">Agregar</button>
+            </div>
+        </div>
+
+    </div>
+    <nav>
+        <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
+        <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
+        <i class="fa-solid fa-house casita2" onclick="princi()"></i>
+        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
+        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userId = localStorage.getItem("userid");
+            const vehicleId = localStorage.getItem("vehicleId");
+
+            // Console logs para verificar la recepción de los IDs
+            console.log("User  ID en info.html:", userId);
+            console.log("Vehicle ID en info.html:", vehicleId);
+
+            if (!userId || !vehicleId) {
+                alert("No se encontró información del usuario o del vehículo. Por favor, vuelve a la página anterior.");
+                window.location.href = "/inicio.html";
+                return;
+            }
+
+
+            try {
+                const responseAutos = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
+                const responseServicios = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/serviceHistory`);
+                const responseModificaciones = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/vehicleModifications`);
+
+                if (!responseAutos.ok) {
+                    throw new Error('Error en la red');
+                }
+
+                const vehiculo = await responseAutos.json();
+                const historialServicios = await responseServicios.json(); // Suponiendo que el historial de servicios está en el objeto vehiculo
+                const historialModificaciones = await responseModificaciones.json();
+
+                // Actualizar la información del vehículo en la página
+                document.getElementById("marca-vehiculo").innerText = vehiculo.make; // Marca
+                document.getElementById("imagen-vehiculo").src = vehiculo.imageUrl || `images/sedan.png`; // Mostrar la imagen
+                document.getElementById("modelo").innerText = vehiculo.model; // Modelo
+                document.getElementById("anio").innerText = vehiculo.year; // Año
+                document.getElementById("kilometraje").innerText = vehiculo.mileage; // Kilometraje
+                document.getElementById("vin").innerText = vehiculo.vin; // VIN
+                document.getElementById("placa").innerText = vehiculo.licensePlate; // Placa
+
+                // // Aquí puedes agregar la lógica para cargar el historial de servicios
+                const historialServiciosList = document.getElementById("infoManto");
+
+                historialServicios.forEach(servicio => {
+                    const infoR = document.createElement('div');
+                    const servi = document.createElement('p');
+                    const linea = document.createElement('span');
+                    const fecha = document.createElement('p');
+                    const costo = document.createElement('p');
+                    const spanALoWey = document.createElement('br');
+
+                    infoR.setAttribute('class', 'Info-Respuesta-Manto');
+
+                    servi.innerHTML = `<b>Servicio:</b> ${servicio.serviceType}`;
+                    linea.setAttribute('class', 'linea2');
+                    fecha.innerHTML = `Fecha: ${servicio.serviceDate}`;
+                    costo.innerHTML = `Costo: ${servicio.cost}`;
+
+                    infoR.append(servi);
+                    infoR.append(linea);
+                    infoR.append(fecha);
+                    infoR.append(costo);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+
+                    historialServiciosList.appendChild(infoR);
+                });
+
+                // Renderizar historial de modificaciones
+                const historialModificacionesList = document.getElementById("infoModis");
+
+                historialModificaciones.forEach(modificacion => {
+                    const infoR = document.createElement('div');
+                    const tipo = document.createElement('p');
+                    const linea = document.createElement('span');
+                    const costo = document.createElement('p');
+                    const taller = document.createElement('p');
+                    const spanALoWey = document.createElement('br');
+
+                    infoR.setAttribute('class', 'Info-Respuesta-Mods');
+
+                    tipo.innerHTML = `<b>Modificación:</b> ${modificacion.modificationType}`;
+                    linea.setAttribute('class', 'linea2');
+                    costo.innerHTML = `Costo: ${modificacion.cost}`;
+                    taller.innerHTML = `Realizado por: ${modificacion.performedBy}`;
+
+                    infoR.append(tipo);
+                    infoR.append(linea);
+                    infoR.append(costo);
+                    infoR.append(taller);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+                    infoR.append(spanALoWey);
+
+                    historialModificacionesList.appendChild(infoR);
+                });
+
+            } catch (error) {
+                console.error('Error al obtener la información del vehículo:', error);
+                //alert("No se pudo cargar la información del vehículo.");
+            }
+        });
+    </script>
+</body>
+</html>
+<script src="scriptCSS.js"></script>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
