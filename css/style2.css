@@ -303,13 +303,14 @@ p{
 
 
 
-/* Contenedor para los botones */
 .botones-container {
-    position: absolute; /* Posiciona el contenedor respecto al padre (.info-mods) */
-    bottom: 10px; /* Separación desde el borde inferior */
-    right: 10px; /* Separación desde el borde derecho */
-    display: flex; /* Alinea los botones en fila */
-    gap: 10px; /* Espaciado entre los botones */
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+    margin-top: 10px; 
+    transition: all 0.3s ease; 
+    padding-right: 10px;
 }
 
 /* Botón "Agregar Modificación" */
@@ -317,24 +318,24 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px; /* Bordes redondeados */
-    background-color: #9F111B; /* Fondo rojo */
-    color: #ffffff; /* Texto blanco */
-    font-size: 0.9rem; /* Tamaño de texto */
-    padding: 10px 15px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cambiar cursor al pasar */
+    border-radius: 12px; 
+    background-color: #9F111B; 
+    color: #ffffff; 
+    font-size: 0.9rem;
+    padding: 10px 15px; 
+    border: none; 
+    cursor: pointer; 
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .btn-agregarM:hover {
-    background-color: #7a0d16; /* Rojo más oscuro al pasar el cursor */
-    transform: scale(1.05); /* Efecto de ampliación */
+    background-color: #7a0d16; 
+    transform: scale(1.05);
 }
 
 .btn-agregarM:active {
-    background-color: #5e0a10; /* Rojo aún más oscuro al hacer clic */
-    transform: scale(0.95); /* Efecto de compresión */
+    background-color: #5e0a10; 
+    transform: scale(0.95);
 }
 
 /* Botón "Agregar Vehículo" */
@@ -342,29 +343,29 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px; /* Bordes redondeados */
-    background-color: #9F111B; /* Fondo gris oscuro */
-    color: #ffffff; /* Texto blanco */
-    font-size: 0.9rem; /* Tamaño de texto */
-    padding: 10px 15px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cambiar cursor al pasar */
+    border-radius: 12px;
+    background-color: #9F111B; 
+    color: #ffffff; 
+    font-size: 0.9rem; 
+    padding: 10px 15px; 
+    border: none; 
+    cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .btn-agregarV:hover {
-    background-color: #1f222b; /* Gris más oscuro al pasar el cursor */
-    transform: scale(1.05); /* Efecto de ampliación */
+    background-color: #1f222b; 
+    transform: scale(1.05); 
 }
 
 .btn-agregarV:active {
-    background-color: #16181f; /* Gris aún más oscuro al hacer clic */
-    transform: scale(0.95); /* Efecto de compresión */
+    background-color: #16181f; 
+    transform: scale(0.95); 
 }
 
-/* Asegúrate de que el contenedor principal sea relativo */
 .info-mods {
-    position: relative; /* Para que los botones se posicionen correctamente dentro del contenedor */
+    position: relative; 
+    margin-bottom: 20px; 
 }
 
 
