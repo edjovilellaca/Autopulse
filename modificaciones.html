@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Servicio - Autopulse</title>
+    <title>Agregar Modificación - Autopulse</title>
     <link rel="stylesheet" href="css/style3.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/header.css">
@@ -13,7 +13,7 @@
             const userid = localStorage.getItem("userid");
             const userIdDisplay = document.getElementById("userIdDisplay");
             if (userid) {
-                userIdDisplay.textContent = `User  ID: ${userid}`;
+                userIdDisplay.textContent = `User   ID: ${userid}`;
             } else {
                 userIdDisplay.textContent = "No se encontró un User ID. Por favor, inicia sesión.";
             }
@@ -61,7 +61,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("serviceForm").addEventListener("submit", async (event) => {
+            document.getElementById("modificationForm").addEventListener("submit", async (event) => {
                 event.preventDefault();
 
                 const formData = new FormData();
@@ -78,24 +78,24 @@
                     return;
                 }
 
-                const serviceDateInput = document.getElementById("serviceDate");
-                const serviceDate = serviceDateInput.value;
-                if (!serviceDate) {
+                const modificationDateInput = document.getElementById("modificationDate");
+                const modificationDate = modificationDateInput.value;
+                if (!modificationDate) {
                     alert("Error: Debes ingresar una fecha.");
                     return;
                 }
 
                 const datePattern = /^(20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-                if (!datePattern.test(serviceDate)) {
+                if (!datePattern.test(modificationDate)) {
                     alert("Error: La fecha debe estar en el formato AAAA-MM-DD (por ejemplo, 2024-10-09).");
                     return;
                 }
 
-                const serviceTypeInput = document.getElementById("serviceType");
-                const serviceType = serviceTypeInput.value.trim();
+                const modificationTypeInput = document.getElementById("modificationType");
+                const modificationType = modificationTypeInput.value.trim();
 
-                const mileageInput = document.getElementById("mileageForService");
-                const mileageAtService = mileageInput.value.trim();
+                const mileageInput = document.getElementById("mileageAtModification");
+                const mileageAtModification = mileageInput.value.trim();
 
                 const costInput = document.getElementById("cost");
                 const cost = costInput.value.trim();
@@ -106,35 +106,43 @@
                 const notesInput = document.getElementById("notes");
                 const notes = notesInput.value.trim();
 
-                if (!serviceType || !mileageAtService || !cost || !serviceCenter || !notes) {
+                const performedByInput = document.getElementById("performedBy");
+                const performedBy = performedByInput.value.trim();
+
+                const descriptionInput = document.getElementById("description");
+                const description = descriptionInput.value.trim();
+
+                if (!modificationType || !mileageAtModification || !cost || !serviceCenter || !notes || !performedBy || !description) {
                     alert("Error: Todos los campos son obligatorios.");
                     return;
                 }
 
-                
-                formData.set("serviceDate", serviceDate);
-                formData.set("serviceType", serviceType);
-                formData.set("mileageAtService", mileageAtService);
+                formData.set("modificationDate", modificationDate);
+                formData.set("modificationType", modificationType);
+                formData.set("mileageAtModification", mileageAtModification);
                 formData.set("cost", cost);
                 formData.set("serviceCenter", serviceCenter);
                 formData.set("notes", notes);
+                formData.set("performedBy", performedBy);
+                formData.set("description", description);
 
-                const dataFormService = {
-                    
-                    serviceType,
-                    serviceDate: "2024-10-10",
-                    mileageAtService,
+                const dataFormModification = {
+                    modificationDate,
+                    modificationType,
+                    mileageAtModification,
                     cost,
                     serviceCenter,
-                    notes
+                    notes,
+                    performedBy,
+                    description
                 }
 
                 for (let [key, value] of formData.entries()) {
                     console.log(`${key}: ${value}`);
                 }
-                console.log("Datos enviados a Firestore:", dataFormService);
+                console.log("Datos enviados a Firestore:", dataFormModification);
 
-                const endpoint = `https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/serviceHistory`;
+                const endpoint = `https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/vehicleModifications`;
 
                 try {
                     const response = await fetch(endpoint, {
@@ -142,11 +150,11 @@
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(dataFormService),
+                        body: JSON.stringify(dataFormModification),
                     });
 
                     if (response.ok) {
-                        alert("Servicio agregado");
+                        alert("Modificación agregada");
                         window.location.href = "index.html";
                     } else {
                         const result = await response.json();
@@ -170,9 +178,9 @@
     </header>
     
     <div class="divAgregar">
-        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User    ID: </p>
     
-        <form id="serviceForm">
+        <form id="modificationForm">
             <div class="info" id="vehiculo">
                 <select class="input" id="vehicleSelect" name="vehicleSelect" required>
                     <option value="" disabled selected>Selecciona un vehículo</option>
@@ -186,31 +194,41 @@
             </div>
     
             <div class="info" id="millas">
-                <input type="number" class="input" id="mileageForService" name="mileageForService" required autocomplete="off">
-                <label class="label">Millas para el servicio</label>
+                <input type="number" class="input" id="mileageAtModification" name="mileageAtModification" required autocomplete="off">
+                <label class="label">Millas en la modificación</label>
             </div>
-    
+            
             <div class="info" id="notas">
                 <textarea class="input textarea" id="notes" name="notes" rows="3" placeholder=" " required></textarea>
                 <label class="label" for="notes">Notas</label>
             </div>
-    
+            
             <div class="info" id="centroServicio">
                 <input type="text" class="input" id="serviceCenter" name="serviceCenter" required autocomplete="off">
                 <label class="label">Centro de servicio</label>
             </div>
     
             <div class="info" id="fecha">
-                <input type="text" class="input" id="serviceDate" name="serviceDate" required autocomplete="off" placeholder="AAAA-MM-DD">
-                <label class="label">Fecha del servicio</label>
+                <input type="text" class="input" id="modificationDate" name="modificationDate" required autocomplete="off" placeholder="AAAA-MM-DD">
+                <label class="label">Fecha de la modificación</label>
             </div>
             
-            <div class="info" id="tipoServicio">
-                <input type="text" class="input" id="serviceType" name="serviceType" required autocomplete="off">
-                <label class="label">Tipo de servicio</label>
+            <div class="info" id="tipoModificacion">
+                <input type="text" class="input" id="modificationType" name="modificationType" required autocomplete="off">
+                <label class="label">Tipo de modificación</label>
             </div>
-    
-            <button type="submit" class="btn">Guardar Servicio</button>
+
+            <div class="info" id="realizadoPor">
+                <input type="text" class="input" id="performedBy" name="performedBy" required autocomplete="off">
+                <label class="label">Realizado por</label>
+            </div>
+
+            <div class="info" id="descripcion">
+                <textarea class="input textarea" id="description" name="description" rows="3" placeholder=" " required></textarea>
+                <label class="label" for="description">Descripción</label>
+            </div>
+            
+            <button type="submit" class="btn">Guardar Modificación</button>
         </form>
     </div>
     
@@ -219,10 +237,12 @@
         <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
         <i class="fa-solid fa-house casita2S" onclick="princi()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Modificación"></i>
     </nav>
 
     <p id="response"></p>
+
+  
 
 </body>
 </html>

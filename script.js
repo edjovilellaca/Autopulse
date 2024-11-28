@@ -1,21 +1,55 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const tituloInfoGeneral = document.getElementById("titulo-info-general");
+    const infoCarro = document.getElementById("infoCarro");
+    
+    const tituloInfoManto = document.getElementById("titulo-info-manto");
+    const infoManto = document.getElementById("infoManto");
+
+    // Inicializa la visibilidad de infoCarro
+    infoCarro.classList.remove("show");
+    infoManto.classList.remove("show");
+
+    // Función para alternar la visibilidad
+    const toggleVisibility = (infoDiv, tituloDiv) => {
+        if (infoDiv.classList.contains("show")) {
+            infoDiv.classList.remove("show");
+            tituloDiv.innerHTML = '<h1>Información General <i class="fa-solid fa-chevron-down"></i></h1>';
+        } else {
+            infoDiv.classList.add("show");
+            tituloDiv.innerHTML = '<h1>Información General <i class="fa-solid fa-chevron-up"></i></h1>';
+        }
+    }; 
+
+    const toggleVisibility2 = (infoDiv, tituloDiv) => {
+        if (infoDiv.classList.contains("show")) {
+            infoDiv.classList.remove("show");
+            tituloDiv.innerHTML = '<h1>Mantenimiento <i class="fa-solid fa-chevron-down"></i></h1>';
+        } else {
+            infoDiv.classList.add("show");
+            tituloDiv.innerHTML = '<h1>Mantenimiento <i class="fa-solid fa-chevron-up"></i></h1>';
+        }
+    }; 
+
+    // Evento para el título de Información General
+    tituloInfoGeneral.addEventListener("click", () => {
+        toggleVisibility(infoCarro, tituloInfoGeneral);
+    });
+
+    // Evento para el título de Mantenimiento
+    tituloInfoManto.addEventListener("click", () => {
+        toggleVisibility2(infoManto, tituloInfoManto);
+        
+    });
+});
 function regresar() {
     window.location.href = `index.html`;
 }
-
 function princi() {
     window.location.href = `index.html`;
 }
 
 function verNotificaciones() {
     window.location.href = `notificaciones.html`;
-}
-
-function preguntar() {
-    window.location.href = `preguntasF.html`;
-}
-
-function redirigir() {
-    window.location.href = `info.html`;
 }
 
 function ubicar() {
@@ -26,19 +60,28 @@ function registrar() {
     window.location.href = `agregarAuto.html`;
 }
 
-function registrar2() {
-    window.location.href = `servicio.html`;
-}
 function agregarServicio() {
-    window.location.href = `agregarservicio.html`; // Cambia a la ruta deseada
+    window.location.href = `agregarServicio.html`; // Cambia a la ruta deseada
 }
 
-function mostrarFormularioServicio() {
-    document.getElementById("formulario-servicio").style.display = "block";
+function preguntar(){
+    window.location.href = `preguntasF.html`;
 }
 
-function cerrarFormularioServicio() {
-    document.getElementById("formulario-servicio").style.display = "none";
+function redirigir(){
+    window.location.href = `info.html`;
+}
+
+function redireccionarModificaciones() {
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "modificaciones.html"; // Redirige a la pantalla de modificaciones
+}
+
+function redireccionarAgregarCarro(){
+    window.location.href = `agregarAuto.html`;
 }
 
 function cerrarSesion() {

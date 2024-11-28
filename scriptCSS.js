@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }; 
 
+    
+
+
     // Evento para el título de Información General
     tituloInfoGeneral.addEventListener("click", () => {
         toggleVisibility(infoCarro, tituloInfoGeneral);
@@ -101,6 +104,14 @@ function mostrarFormularioServicio() {
 
 function cerrarFormularioServicio() {
     document.getElementById("formulario-servicio").style.display = "none";
+}
+
+function redireccionarModificaciones(){
+    window.location.href = `modificaciones.html`; // Cambia a la ruta deseada
+}
+
+function redireccionarAgregarCarro(){
+    window.location.href = `agregarAuto.html`; // Cambia a la ruta deseada
 }
 
 function cerrarSesion() {

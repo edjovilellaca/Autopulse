@@ -68,13 +68,17 @@
             </div>
         </div>
         <div class="info-mods">
-            <div class="Titulo" id="titulo-info-mods">
-                <h1>Modificaciones <i class="fa-solid fa-chevron-down"></i></h1>
+            <div class="Titulo" id="titulo-info-mods" onclick="toggleModificaciones()">
+                <h1>Modificaciones <i class="fa-solid fa-chevron-down" id="chevron-mods"></i></h1>
             </div>
-            <div class="infoCarro" id="infoModis">
-
+            <div class="infoCarro" id="infoModis" style="display: none;">
+            </div>
+            <div class="botones-container">
+                <button class="btn-agregarM" onclick="redireccionarModificaciones()">Agregar Modificacion</button>
+                <button class="btn-agregarV" onclick="redireccionarAgregarCarro()">Agregar Vehículo</button>
             </div>
         </div>
+        
     </div>
     <nav>
         <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
@@ -83,6 +87,25 @@
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
         <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
+
+    <script>
+        //xd
+        function toggleModificaciones() {
+        const infoModis = document.getElementById("infoModis");
+        const chevron = document.getElementById("chevron-mods");
+    
+        // Verifica si el contenido está visible o no
+        if (infoModis.style.display === "none" || !infoModis.style.display) {
+            infoModis.style.display = "block"; // Muestra el contenido
+            chevron.classList.remove("fa-chevron-down");
+            chevron.classList.add("fa-chevron-up"); // Cambia el ícono
+        } else {
+            infoModis.style.display = "none"; // Oculta el contenido
+            chevron.classList.remove("fa-chevron-up");
+            chevron.classList.add("fa-chevron-down"); // Cambia el ícono de nuevo
+        }
+    }
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {

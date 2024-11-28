@@ -6,6 +6,104 @@ body {
     justify-content: center;
     align-items: center;
     background: #9F111B;
+    padding-top: 2%;
+    padding-bottom: 23%;
+}
+
+.info-general{
+    padding-bottom: 0px;
+}
+
+.info-manto{
+    padding-bottom: 10px;
+}
+
+.flechatras{
+    position:absolute;
+    padding-left: 5%;
+    font-size: 2rem;
+}
+
+.tarjetaCarro {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 0 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 95%;
+}
+
+h1{
+    padding-left: 5%;
+    padding-bottom: 3%;
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+.fotoCarro{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fotoCarro img {
+    width: 40%;
+    height: auto;
+    padding-top: 20px;
+}
+
+.infoCarro {
+    text-align: left;
+    padding: 0 20px;
+    overflow: hidden; /* Evita que el contenido desborde */
+    max-height: 0; /* Comienza con altura 0 */
+    transition: max-height 0.5s ease; /* Transición suave para la altura */
+}
+
+.infoCarro.show {
+    max-height: 500px; 
+}
+
+.Info-Respuesta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.linea{
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 2px;
+}
+
+.fotoCarro h2 {
+    font-family: "Russo One", sans-serif;
+    font-size: 2rem;
+    margin: 0;
+}
+
+p{
+    margin: 5px 0;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.04rem;
+}
+
+.statusPromedio {
+    color: orange;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Russo+One&display=swap');
+body {
+    margin: 0;
+    font-family: "Russo One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #9F111B;
     padding-top: 15%;
     padding-bottom: 23%;
 }
@@ -128,3 +226,146 @@ p{
     font-family: "Quicksand", sans-serif;
     font-size: 1.04rem;
 }
+
+
+.btn-agregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Bordes redondeados */
+    background-color: #9F111B; /* Color de fondo rojo */
+    color: #ffffff; /* Texto blanco */
+    font-size: 1rem; /* Reducir tamaño de fuente */
+    width: 120px; /* Ancho del botón */
+    height: 40px; /* Altura del botón */
+    border: none; /* Sin bordes */
+    outline: none; /* Sin bordes de enfoque */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    transition: background-color 0.3s ease-in-out, transform 0.2s; /* Animación suave */
+}
+
+/* Cambio de color al pasar el cursor */
+.btn-agregar:hover {
+    background-color: #7a0d16; /* Rojo más oscuro al hacer hover */
+    transform: scale(1.05); /* Pequeña ampliación al pasar el ratón */
+}
+
+/* Cambio visual al hacer clic */
+.btn-agregar:active {
+    background-color: #5e0a10; /* Rojo más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de compresión */
+}
+
+
+/* Contenedor específico para el select */
+#vehiculo {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Estilo para el select */
+#vehiculo select {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 12px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de la fuente */
+    border: 2px solid #cccccc; /* Borde inicial gris */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    color: #0c0c0c; /* Texto negro */
+    outline: none; /* Quitar el borde predeterminado */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Animación suave */
+    appearance: none; /* Ocultar flecha predeterminada del navegador */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDE0IDE0Ij48cGF0aCBkPSJNMiA0bDYgNCA2LTQtMTIgMHoiIGZpbGw9IiM2NjYiLz48L3N2Zz4='); /* Icono de flecha */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* Cambio de estilo al enfocar */
+#vehiculo select:focus {
+    border-color: #9F111B; /* Cambiar borde a rojo */
+    box-shadow: 0 0 6px rgba(159, 17, 27, 0.5); /* Sombra roja */
+}
+
+/* Etiqueta para el select */
+#vehiculo .label {
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    font-size: 0.9rem;
+    color: #9F111B; /* Color rojo */
+    background-color: #fff;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* Contenedor para los botones */
+.botones-container {
+    position: absolute; /* Posiciona el contenedor respecto al padre (.info-mods) */
+    bottom: 10px; /* Separación desde el borde inferior */
+    right: 10px; /* Separación desde el borde derecho */
+    display: flex; /* Alinea los botones en fila */
+    gap: 10px; /* Espaciado entre los botones */
+}
+
+/* Botón "Agregar Modificación" */
+.btn-agregarM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Bordes redondeados */
+    background-color: #9F111B; /* Fondo rojo */
+    color: #ffffff; /* Texto blanco */
+    font-size: 0.9rem; /* Tamaño de texto */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-agregarM:hover {
+    background-color: #7a0d16; /* Rojo más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Efecto de ampliación */
+}
+
+.btn-agregarM:active {
+    background-color: #5e0a10; /* Rojo aún más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de compresión */
+}
+
+/* Botón "Agregar Vehículo" */
+.btn-agregarV {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Bordes redondeados */
+    background-color: #9F111B; /* Fondo gris oscuro */
+    color: #ffffff; /* Texto blanco */
+    font-size: 0.9rem; /* Tamaño de texto */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-agregarV:hover {
+    background-color: #1f222b; /* Gris más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Efecto de ampliación */
+}
+
+.btn-agregarV:active {
+    background-color: #16181f; /* Gris aún más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de compresión */
+}
+
+/* Asegúrate de que el contenedor principal sea relativo */
+.info-mods {
+    position: relative; /* Para que los botones se posicionen correctamente dentro del contenedor */
+}
+
+
+
