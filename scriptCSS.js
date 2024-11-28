@@ -106,12 +106,20 @@ function cerrarFormularioServicio() {
     document.getElementById("formulario-servicio").style.display = "none";
 }
 
-function redireccionarModificaciones(){
-    window.location.href = `modificaciones.html`; // Cambia a la ruta deseada
+function redireccionarModificaciones() {
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "modificaciones.html"; // Redirige a la pantalla de modificaciones
 }
 
 function redireccionarAgregarCarro(){
-    window.location.href = `agregarAuto.html`; // Cambia a la ruta deseada
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "agregarservicio.html"; // Redirige a la pantalla de modificaciones
 }
 
 function cerrarSesion() {

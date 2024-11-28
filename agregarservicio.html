@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Servicio - Autopulse</title>
     <link rel="stylesheet" href="css/style3.css">
+    <!-- <link rel="stylesheet" href="css/style2.css"> -->
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/header.css">
     <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
@@ -42,7 +43,7 @@
                     vehicles.forEach(vehicle => {
                         const option = document.createElement("option");
                         option.value = vehicle.vehicleId;
-                        option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.year})`;
+                        option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.vin})`;
                         vehicleSelect.appendChild(option);
                         console.log(`Opción añadida: ${vehicle.vehicleId} - ${vehicle.make} ${vehicle.model}`);
                     });
@@ -170,7 +171,7 @@
     </header>
     
     <div class="divAgregar">
-        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
+        <p id="userIdDisplay" style="margin-bottom: 0px; font-weight: bold; color: white;">User ID: </p>
     
         <form id="serviceForm">
             <div class="info" id="vehiculo">
@@ -217,7 +218,7 @@
     <nav>
         <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
         <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
-        <i class="fa-solid fa-house casita2S" onclick="princi()"></i>
+        <i class="fa-solid fa-house casita2" onclick="princi()"></i>
         <i class="fa-solid fa-gears config" onclick="registrar()"></i>
         <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
     </nav>
