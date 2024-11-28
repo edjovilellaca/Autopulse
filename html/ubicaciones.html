@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ubicaciones</title>
-        <link rel="stylesheet" href="../css/styleU.css">
-        <link rel="stylesheet" href="../css/nav.css">
-        <link rel="stylesheet" href="../css/header.css">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicaciones</title>
+    <link rel="stylesheet" href="/css/styleU.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
@@ -27,14 +27,15 @@
         </iframe>
     </div>
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
-        <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-right-from-bracket casita" onclick="cerrarSesion()" title="Cerrar sesión"></i>
-        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-house casita" onclick="princi()" title="Inicio"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()" title="Notificaciones"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()" title="Ubicaciones"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-gears config" onclick="registrar()" title="Registrar Auto"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
 </body>
 </html>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>

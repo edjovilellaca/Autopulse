@@ -4,36 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Vehículo - Autopulse</title>
-    <link rel="stylesheet" href="../css/style3.css">
-    <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="/css/style3.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/header.css">
     <script src="https://kit.fontawesome.com/dad89e78ab.js" crossorigin="anonymous"></script>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Recupera el uid de localStorage
             const userid = localStorage.getItem("userid");
-
             // Muestra el User ID en la página
             const userIdDisplay = document.getElementById("userIdDisplay");
             if (userid) {
-                userIdDisplay.textContent = `User ID: ${userid}`;
+                userIdDisplay.textContent = `User  ID: ${userid}`;
             } else {
                 userIdDisplay.textContent = "No se encontró un User ID. Por favor, inicia sesión.";
             }
         });
     </script>
+
 </head>
 <body>
     <header>
         <div class="nav-buttons">
-            <span>Inicio</span>
+            <button onclick="princi()" style="all: unset; cursor: pointer;">
+                <span>Inicio</span>
+            </button>
         </div>
         <i class="fa-solid fa-question-circle" onclick="preguntar()"></i>
     </header>
     
+    
     <div class="divAgregar">
-        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User ID: </p>
-        
+        <p id="userIdDisplay" style="margin-bottom: 20px; font-weight: bold;">User  ID: </p>
+        <p id="userNameDisplay" style="margin-bottom: 20px; font-weight: bold;">Bienvenido: </p>
+
         <form id="vehicleForm">
             <label for="file" class="file-style">
                 <img id="previewImage" src="./images/upload.png">
@@ -74,16 +79,18 @@
             <button type="submit" class="btn">Guardar Vehículo</button>
         </form>
     </div>
-
     <nav>
-        <i class="fa-solid fa-house casita" onclick="princi()"></i>
-        <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
-        <i class="fa-solid fa-location-dot casita" onclick="ubicar()"></i>
-        <i class="fa-solid fa-gears config" onclick="registrar()"></i>
-        <i class="fa-solid fa-right-from-bracket casita" onclick="cerrarSesion()" title="Cerrar sesión"></i>
-        <i class="fa-solid fa-wrench casita" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-house casita" onclick="princi()" title="Inicio"></i>
+        <i class="fa-solid fa-bell" onclick="verNotificaciones()" title="Notificaciones"></i>
+        <i class="fa-solid fa-location-dot" onclick="ubicar()" title="Ubicaciones"></i>
+        <h1 class="nombre">Autopulse</h1>
+        <i class="fa-solid fa-gears config" onclick="registrar()" title="Registrar Auto"></i>
+        <i class="fa-solid fa-wrench" onclick="agregarServicio()" title="Agregar Servicio"></i>
+        <i class="fa-solid fa-right-from-bracket" onclick="cerrarSesion()" title="Cerrar sesión"></i>
     </nav>
     
+    <script src="/script.js"></script>
+
     <p id="response"></p>
 
     <script>
@@ -118,40 +125,37 @@
         // Envío del formulario al backend
         document.getElementById("vehicleForm").addEventListener("submit", async (event) => {
             event.preventDefault();
-
+    
             const form = document.getElementById("vehicleForm");
             const formData = new FormData(form);
-
+    
             // Recupera el User ID dinámicamente de localStorage
             const userId = localStorage.getItem("userid");
             if (!userId) {
-                document.getElementById("response").innerText = 
-                    "Error: No se encontró el User ID. Por favor, inicia sesión.";
+                alert("Error: No se encontró el User ID. Por favor, inicia sesión.");
                 return;
             }
-
-            const endpoint = `http://localhost:3000/users/${userId}/vehicles/`;
-
+    
+            const endpoint = `https://backend-autoplus.onrender.com/users/${userId}/vehicles/`;
+    
             try {
                 const response = await fetch(endpoint, {
                     method: "POST",
                     body: formData,
                 });
-
-                const result = await response.json();
-
+    
                 if (response.ok) {
-                    document.getElementById("response").innerText = 
-                        `Vehículo creado con éxito: ${JSON.stringify(result)}`;
+                    alert("Auto agregado");
+                    window.location.href = "index.html"; // Redirige al índice
                 } else {
-                    document.getElementById("response").innerText = 
-                        `Error: ${result.error}`;
+                    const result = await response.json();
+                    alert(`Error: ${result.error}`);
                 }
             } catch (error) {
-                document.getElementById("response").innerText = 
-                    `Error de red: ${error.message}`;
+                alert(`Error de red: ${error.message}`);
             }
         });
     </script>
+
 </body>
 </html>
