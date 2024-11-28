@@ -1,3 +1,114 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Russo+One&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Russo One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #9F111B;
+    height: 100%;
+    padding: 8% 0;
+}
+
+.divAgregar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px 0 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 97.5%;
+}
+
+.file-style{
+    font-family: 'Trebuchet MS';
+    width: 80%;
+    height: 20%;
+    max-width: 80%;
+    max-height: 10rem;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    text-align: center;
+    padding: 3%;
+    border-radius: 15px;
+    border: 2px dashed #292c37;
+    background-color: #cccccc43;
+    overflow: hidden;
+    position:relative;
+}
+
+#previewImage {
+    width: 15%;
+    max-width: 85%;
+    max-height: 10rem;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.info{
+    margin-left: 5%;
+    position: relative;
+    margin-bottom: 3%;
+}
+
+input{
+    display: flex;
+    border-top: none;
+    border-right: 0px;
+    border-left: 0px;
+    border-color: #9F111B;
+	background: transparent;
+	outline:none;
+	height: 70%;
+	color: #0c0c0c;
+	font-size: 1.3rem;
+	width: 70%;
+	margin-bottom: 20px;
+	padding: 5% 0 2% 2%;
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 2rem;
+    color: #cccccc;
+    pointer-events: none;
+    transition: .5s;
+    width: 100%;
+    text-align: left;
+}
+
+input:focus ~ .label,
+input:valid ~ .label {
+    top: -20px;
+    left: 0;
+    color: #292c37;
+    font-size: 1rem;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    border-radius: 24px;
+    background-color: #9F111B;
+    color: #cccccc;
+    font-size: 1.5rem;
+    width: 45%;
+    height: 15%;
+    align-self: center;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    text-align: center;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Russo+One&display=swap');
 body {
     margin: 0;
@@ -54,7 +165,7 @@ body {
     margin-bottom: 3%;
 }
 
-input{
+.input{
     display: flex;
     border-top: none;
     border-right: 0px;
@@ -115,3 +226,232 @@ form{
     flex-direction: column;
     padding-bottom: 12%;
 }
+
+/* Ajustar select para encajar dentro del contenedor */
+#vehicleSelect {
+    width: 90%; 
+    margin: 0 auto; 
+    padding: 12px 10px; 
+    font-size: 16px;
+    border: 1px solid #9F111B; 
+    border-radius: 5px; 
+    background: #ffffff; 
+    color: #0c0c0c; 
+    appearance: none; 
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDE0IDE0Ij48cGF0aCBkPSJNMiA0bDYgNCA2LTQtMTIgMHoiIGZpbGw9IiM2NjYiLz48L3N2Zz4='); /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilo al enfocar */
+#vehicleSelect:focus {
+    border-color: #9F111B; 
+    box-shadow: 0 0 6px rgba(159, 17, 27, 0.5); 
+    outline: none;
+}
+
+/* Etiqueta animada ajustada */
+#vehiculo .label {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    font-size: 14px;
+    color: #cccccc; 
+    background-color: #ffffff; 
+    padding: 0 5px;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+/* Mostrar etiqueta al seleccionar o enfocar */
+#vehicleSelect:focus + .label,
+#vehicleSelect:not(:placeholder-shown) + .label {
+    opacity: 1;
+    top: -15px;
+    left: 5%;
+    color: #9F111B; 
+    font-size: 12px;
+}
+
+
+/* Contenedor del textarea */
+#notas {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Textarea con diseño */
+#notas textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #cccccc;
+    background: transparent;
+    outline: none;
+    color: #0c0c0c; 
+    font-size: 1.2rem; 
+    font-family: "Russo One", sans-serif; 
+    font-weight: normal; 
+    resize: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Enfocar el textarea */
+#notas textarea:focus {
+    border-color: #9F111B;
+    box-shadow: 0 2px 4px rgba(159, 17, 27, 0.3); 
+}
+
+/* Etiqueta animada */
+#notas .label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1rem;
+    color: #cccccc;
+    pointer-events: none;
+    transition: 0.3s ease-in-out;
+    font-family: "Russo One", sans-serif; 
+    font-weight: normal; 
+}
+
+/* Mover la etiqueta cuando el textarea está enfocado o tiene contenido */
+#notas textarea:focus ~ .label,
+#notas textarea:not(:placeholder-shown) ~ .label {
+    top: -15px;
+    left: 0;
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+
+
+/* Contenedor del textarea */
+#descripcion {
+    width: 100%; 
+    position: relative; 
+    margin-bottom: 20px;
+}
+
+/* Textarea con diseño */
+#descripcion textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #cccccc;
+    background: transparent;
+    outline: none;
+    color: #0c0c0c; 
+    font-size: 1.2rem; 
+    font-family: "Russo One", sans-serif; 
+    font-weight: normal;
+    resize: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Enfocar el textarea */
+#descripcion textarea:focus {
+    border-color: #9F111B; 
+    box-shadow: 0 2px 4px rgba(159, 17, 27, 0.3); /* Sombra ligera */
+}
+
+/* Etiqueta animada */
+#descripcion .label {
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    font-size: 1rem;
+    color: #cccccc; 
+    pointer-events: none; 
+    transition: 0.3s ease-in-out; 
+}
+
+/* Mover la etiqueta cuando el textarea está enfocado o tiene contenido */
+#descripcion textarea:focus ~ .label,
+#descripcion textarea:not(:placeholder-shown) ~ .label {
+    top: -15px; 
+    left: 0; 
+    font-size: 0.9rem;
+    color: #000000; 
+}
+
+
+
+
+
+
+/* Contenedor para los botones */
+.botones-container {
+    position: absolute; /* Posiciona el contenedor respecto al padre (.info-mods) */
+    bottom: 10px; /* Separación desde el borde inferior */
+    right: 10px; /* Separación desde el borde derecho */
+    display: flex; /* Alinea los botones en fila */
+    gap: 10px; /* Espaciado entre los botones */
+}
+
+/* Estilo para el botón "Agregar Modificación" */
+.btn-agregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Bordes redondeados */
+    background-color: #9F111B; /* Fondo rojo */
+    color: #ffffff; /* Texto blanco */
+    font-size: 0.9rem; /* Tamaño de texto */
+    width: 140px; /* Ancho del botón */
+    height: 40px; /* Altura del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-agregar:hover {
+    background-color: #7a0d16; /* Rojo más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Efecto de ampliación */
+}
+
+.btn-agregar:active {
+    background-color: #5e0a10; /* Rojo aún más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de compresión */
+}
+
+/* Estilo para el botón "Agregar Vehículo" */
+.btn-eliminar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Bordes redondeados */
+    background-color: #292c37; /* Fondo gris oscuro */
+    color: #ffffff; /* Texto blanco */
+    font-size: 0.9rem; /* Tamaño de texto */
+    width: 140px; /* Ancho del botón */
+    height: 40px; /* Altura del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-eliminar:hover {
+    background-color: #1f222b; /* Gris más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Efecto de ampliación */
+}
+
+.btn-eliminar:active {
+    background-color: #16181f; /* Gris aún más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de compresión */
+}
+
+/* Asegúrate de que el contenedor principal tenga posición relativa */
+.info-mods {
+    position: relative; /* Para que los botones se posicionen correctamente dentro del contenedor */
+}
+
+

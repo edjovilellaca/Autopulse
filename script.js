@@ -44,21 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function regresar() {
     window.location.href = `index.html`;
 }
-
 function princi() {
     window.location.href = `index.html`;
 }
 
 function verNotificaciones() {
     window.location.href = `notificaciones.html`;
-}
-
-function preguntar() {
-    window.location.href = `preguntasF.html`;
-}
-
-function redirigir() {
-    window.location.href = `info.html`;
 }
 
 function ubicar() {
@@ -69,11 +60,8 @@ function registrar() {
     window.location.href = `agregarAuto.html`;
 }
 
-function registrar2() {
-    window.location.href = `servicio.html`;
-}
 function agregarServicio() {
-    window.location.href = `agregarservicio.html`; // Cambia a la ruta deseada
+    window.location.href = `agregarServicio.html`; // Cambia a la ruta deseada
 }
 
 function preguntar(){

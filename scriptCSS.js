@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }; 
 
+    
+
+
     // Evento para el título de Información General
     tituloInfoGeneral.addEventListener("click", () => {
         toggleVisibility(infoCarro, tituloInfoGeneral);
