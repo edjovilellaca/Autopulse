@@ -103,6 +103,22 @@ function cerrarFormularioServicio() {
     document.getElementById("formulario-servicio").style.display = "none";
 }
 
+function redireccionarModificaciones() {
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "modificaciones.html"; // Redirige a la pantalla de modificaciones
+}
+
+function redireccionarAgregarCarro(){
+    const vehicleId = localStorage.getItem("vehicleId"); // Obtén el vehículo seleccionado actualmente
+    if (vehicleId) {
+        localStorage.setItem("selectedVehicleId", vehicleId); // Guarda el vehículo seleccionado
+    }
+    window.location.href = "agregarservicio.html"; // Redirige a la pantalla de modificaciones
+}
+
 function cerrarSesion() {
     // Confirmación opcional para cerrar sesión
     const confirmacion = confirm("¿Estás seguro de que deseas cerrar sesión?");
