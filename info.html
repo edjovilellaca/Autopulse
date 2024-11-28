@@ -71,14 +71,14 @@
             <div class="Titulo" id="titulo-info-mods" onclick="toggleModificaciones()">
                 <h1>Modificaciones <i class="fa-solid fa-chevron-down" id="chevron-mods"></i></h1>
             </div>
-            <div class="infoCarro" id="infoModis" style="display: none;">
-            </div>
-            <div class="botones-container">
-                <button class="btn-agregarM" onclick="redireccionarModificaciones()">Agregar Modificacion</button>
-                <button class="btn-agregarV" onclick="redireccionarAgregarCarro()">Agregar Mantenimiento</button>
+            <div class="infoCarro" id="infoModis">
+                <!-- Historial de Modificaciones -->
             </div>
         </div>
-        
+        <div class="botones-container">
+            <button class="btn-agregarM" onclick="redireccionarModificaciones()">Agregar Modificacion</button>
+            <button class="btn-agregarV" onclick="redireccionarAgregarCarro()">Agregar Mantenimiento</button>
+        </div>
     </div>
     <nav>
         <i class="fa-solid fa-bell casita" onclick="verNotificaciones()"></i>
@@ -89,28 +89,11 @@
     </nav>
 
     <script>
-        //xd
-        function toggleModificaciones() {
-        const infoModis = document.getElementById("infoModis");
-        const chevron = document.getElementById("chevron-mods");
-    
-        // Verifica si el contenido está visible o no
-        if (infoModis.style.display === "none" || !infoModis.style.display) {
-            infoModis.style.display = "block"; // Muestra el contenido
-            chevron.classList.remove("fa-chevron-down");
-            chevron.classList.add("fa-chevron-up"); // Cambia el ícono
-        } else {
-            infoModis.style.display = "none"; // Oculta el contenido
-            chevron.classList.remove("fa-chevron-up");
-            chevron.classList.add("fa-chevron-down"); // Cambia el ícono de nuevo
-        }
-    }
-    </script>
-
-    <script>
         document.addEventListener("DOMContentLoaded", async () => {
+
             const userId = localStorage.getItem("userid");
             const vehicleId = localStorage.getItem("vehicleId");
+
 
             // Console logs para verificar la recepción de los IDs
             console.log("User  ID en info.html:", userId);
@@ -127,6 +110,9 @@
                 const responseAutos = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/`);
                 const responseServicios = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/serviceHistory`);
                 const responseModificaciones = await fetch(`https://backend-autoplus.onrender.com/users/${userId}/vehicles/${vehicleId}/vehicleModifications`);
+
+                console.log('Vehiculo: ', vehicleId);
+                console.log('responseServicios', responseServicios.json());
 
                 if (!responseAutos.ok) {
                     throw new Error('Error en la red');
@@ -209,6 +195,7 @@
             }
         });
     </script>
+
 </body>
 </html>
 <script src="scriptCSS.js"></script>

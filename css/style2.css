@@ -6,104 +6,6 @@ body {
     justify-content: center;
     align-items: center;
     background: #9F111B;
-    padding-top: 2%;
-    padding-bottom: 23%;
-}
-
-.info-general{
-    padding-bottom: 0px;
-}
-
-.info-manto{
-    padding-bottom: 10px;
-}
-
-.flechatras{
-    position:absolute;
-    padding-left: 5%;
-    font-size: 2rem;
-}
-
-.tarjetaCarro {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 10%;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px 0 20px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 95%;
-}
-
-h1{
-    padding-left: 5%;
-    padding-bottom: 3%;
-    margin: 0;
-    font-size: 1.7rem;
-}
-
-.fotoCarro{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.fotoCarro img {
-    width: 40%;
-    height: auto;
-    padding-top: 20px;
-}
-
-.infoCarro {
-    text-align: left;
-    padding: 0 20px;
-    overflow: hidden; /* Evita que el contenido desborde */
-    max-height: 0; /* Comienza con altura 0 */
-    transition: max-height 0.5s ease; /* Transición suave para la altura */
-}
-
-.infoCarro.show {
-    max-height: 500px; 
-}
-
-.Info-Respuesta {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.linea{
-    flex-grow: 1;
-    height: 1px;
-    background-color: #ccc;
-    margin: 0 2px;
-}
-
-.fotoCarro h2 {
-    font-family: "Russo One", sans-serif;
-    font-size: 2rem;
-    margin: 0;
-}
-
-p{
-    margin: 5px 0;
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.04rem;
-}
-
-.statusPromedio {
-    color: orange;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Russo+One&display=swap');
-body {
-    margin: 0;
-    font-family: "Russo One", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #9F111B;
     padding-top: 15%;
     padding-bottom: 23%;
 }
@@ -113,7 +15,7 @@ body {
 }
 
 .info-manto{
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .info-mods{
@@ -165,7 +67,7 @@ h1{
 }
 
 .infoCarro.show {
-    max-height: 500px; 
+    max-height: 1000px; 
 }
 
 .Info-Respuesta {
@@ -244,12 +146,6 @@ p{
     transition: background-color 0.3s ease-in-out, transform 0.2s; /* Animación suave */
 }
 
-/* Cambio de color al pasar el cursor */
-.btn-agregar:hover {
-    background-color: #7a0d16; /* Rojo más oscuro al hacer hover */
-    transform: scale(1.05); /* Pequeña ampliación al pasar el ratón */
-}
-
 /* Cambio visual al hacer clic */
 .btn-agregar:active {
     background-color: #5e0a10; /* Rojo más oscuro al hacer clic */
@@ -306,9 +202,9 @@ p{
 .botones-container {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
     gap: 10px; 
-    margin-top: 10px; 
     transition: all 0.3s ease; 
     padding-right: 10px;
 }
@@ -328,16 +224,6 @@ p{
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.btn-agregarM:hover {
-    background-color: #7a0d16; 
-    transform: scale(1.05);
-}
-
-.btn-agregarM:active {
-    background-color: #5e0a10; 
-    transform: scale(0.95);
-}
-
 /* Botón "Agregar Vehículo" */
 .btn-agregarV {
     display: flex;
@@ -353,17 +239,6 @@ p{
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.btn-agregarV:hover {
-    background-color: #1f222b; 
-    transform: scale(1.05); 
-}
-
-.btn-agregarV:active {
-    background-color: #16181f; 
-    transform: scale(0.95); 
-}
-
 .info-mods {
     position: relative; 
-    margin-bottom: 20px; 
 }
